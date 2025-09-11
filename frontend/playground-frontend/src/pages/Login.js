@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import "./Login.css";
 
 export default function Login() {
@@ -8,6 +9,14 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { login, isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    // If user is already authenticated, redirect to playground
+    if (isAuthenticated) {
+      navigate('/playground');
+    }
+  }, [isAuthenticated, navigate]);
 
   const validateFields = () => {
     if (!username && !password) {
@@ -32,6 +41,7 @@ export default function Login() {
     try {
       const res = await axios.post("http://localhost:5000/login", { username, password });
       if (res.data.success) {
+        login(username, password);
         navigate("/playground");
       }
     } catch (err) {

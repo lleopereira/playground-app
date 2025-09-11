@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Inputs.css';
+import FormSubmitOverlay from '../components/FormSubmitOverlay';
 
 export default function Inputs() {
   const [formData, setFormData] = useState({
@@ -7,8 +8,10 @@ export default function Inputs() {
     email: '',
     phone: '',
     number: '',
-    search: ''
+    search: '',
+    date: ''
   });
+  const [showOverlay, setShowOverlay] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -20,7 +23,7 @@ export default function Inputs() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Form submitted with the following data:\n' + JSON.stringify(formData, null, 2));
+    setShowOverlay(true);
   };
 
   return (
@@ -98,6 +101,20 @@ export default function Inputs() {
           />
         </div>
 
+        {/* Date Input */}
+        <div className="input-group">
+          <label htmlFor="date">Data:</label>
+          <input
+            type="date"
+            id="date"
+            name="date"
+            data-test-id="input-date"
+            value={formData.date}
+            onChange={handleInputChange}
+            placeholder="dd/mm/yyyy"
+          />
+        </div>
+
         <button 
           type="submit" 
           id="submit-button"
@@ -106,6 +123,12 @@ export default function Inputs() {
           Enviar
         </button>
       </form>
+      {showOverlay && (
+        <FormSubmitOverlay 
+          formData={formData}
+          onClose={() => setShowOverlay(false)}
+        />
+      )}
     </div>
   );
 }

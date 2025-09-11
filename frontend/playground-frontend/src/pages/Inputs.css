@@ -1,33 +1,27 @@
 .page-content {
   padding: clamp(1rem, 4vw, 2rem);
   max-width: 1536px;
-  width: 100%;
   margin: 0 auto;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+  width: 100%;
 }
 
 #page-title {
-  font-size: 2rem;
-  color: #333;
-  margin: 0;
+  font-style: italic;
   text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
 }
 
 .input-form {
+  min-width: 800px;
   display: flex;
   flex-direction: column;
-  gap: clamp(1rem, 2vw, 1.5rem);
-  background-color: #f5f5f5;
-  padding: clamp(1rem, 4vw, 2rem);
+  gap: 1.5rem;
+  background: rgb(241, 239, 239);
+  padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
 }
 
 .input-group {
@@ -36,48 +30,45 @@
   gap: 0.5rem;
 }
 
-label {
-  font-weight: bold;
+.input-group label {
+  font-style: italic;
+  font-weight: 500;
   color: #333;
 }
 
-input {
-  padding: 0.8rem;
+.input-group input {
+  padding: 0.75rem;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.2s;
 }
 
-input:focus {
+.input-group input:focus {
+  border-color: var(--primary-color);
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-}
-
-input::placeholder {
-  color: #999;
+  box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1);
 }
 
 button[type="submit"] {
-  background-color: #007bff;
+  background-color: #296529;
   color: white;
   padding: 1rem;
   border: none;
   border-radius: 4px;
-  cursor: pointer;
   font-size: 1rem;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 1rem;
 }
 
 button[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: #1c491c;
 }
 
 /* Specific input types styling */
 input[type="number"] {
-  width: 150px;
+  width: 300px;
 }
 
 input[type="search"] {
@@ -85,6 +76,25 @@ input[type="search"] {
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23999" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>');
   background-repeat: no-repeat;
   background-position: 0.5rem center;
+}
+
+input[type="date"] {
+  width: 200px;
+  padding: 0.8rem;
+  cursor: pointer;
+}
+
+/* Styling the calendar icon */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  padding: 0.2rem;
+  margin-right: 0.2rem;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
 }
 
 /* Responsive Design */

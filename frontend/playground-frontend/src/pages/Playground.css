@@ -2,10 +2,20 @@
   padding: clamp(1rem, 4vw, 2rem);
   max-width: 1536px;
   margin: 0 auto;
-  height: 100%;
+  min-height: calc(100vh - 40px);
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
 }
 
 /* Main content */
@@ -29,7 +39,7 @@
   height: auto;
   max-height: 45vh;
   min-height: 300px;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   object-fit: contain;
 }
 
@@ -48,7 +58,7 @@
   margin: 0 auto;
   text-align: center;
   color: #444;
-  line-height: 1.8;
+  line-height: 1.6;
   font-size: clamp(1rem, 2vw, 1.25rem);
 }
 

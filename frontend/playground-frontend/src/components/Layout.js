@@ -1,13 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './Layout.css';
 import Breadcrumb from './Breadcrumb';
 
 export default function Layout({ children }) {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
   const menuButtonRef = useRef(null);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -32,8 +40,18 @@ export default function Layout({ children }) {
 
   return (
     <div className={`layout-container ${isSidebarOpen ? 'sidebar-open' : ''}`}>
-      <Breadcrumb />
-      {/* Hamburger Menu Button */}
+      <div className="top-bar">
+        <Breadcrumb />
+        <button 
+          className="logout-button" 
+          onClick={handleLogout}
+          data-test-id="logout-button"
+        >
+          Logout
+        </button>
+      </div>
+
+      {/* Mobile Menu Button */}
       <button 
         ref={menuButtonRef}
         className="menu-toggle" 
@@ -102,6 +120,7 @@ export default function Layout({ children }) {
               Radio Buttons
             </Link>
           </li>
+
           <li>
             <Link
               to="/selects"
@@ -155,10 +174,10 @@ export default function Layout({ children }) {
         </ul>
       </nav>
 
-      {/* Main content */}
-      <div className="layout-main">
+      {/* Main Content */}
+      <main className="main-content">
         {children}
-      </div>
+      </main>
     </div>
   );
 }
