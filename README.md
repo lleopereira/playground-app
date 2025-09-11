@@ -1,40 +1,51 @@
 # Playground App
 
-A React-based testing playground application with modern UI components and responsive design.
+A modern full-stack playground application featuring a React frontend with beautiful UI components and an Express backend.
 
-##  Quick Start
+## Quick Start Guide
 
-1. **Clone the repository**
+### Prerequisites
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+
+### 1. Backend Setup
+
 ```bash
-git clone [your-repository-url]
-cd playground-app
-```
+# Navigate to backend directory and install dependencies
+cd backend && npm install
 
-2. **Install dependencies**
-```bash
-cd frontend/playground-frontend
-npm install
-```
-
-3. **Start the application**
-```bash
+# Start the backend server
 npm start
 ```
 
-The application will be available at `http://localhost:3000`
+Your backend API will be running at `http://localhost:5000`
 
-A React-based testing playground application with modern UI components and responsive design.
+### 2. Frontend Setup
+
+```bash
+# Open a new terminal, navigate to frontend directory and install dependencies
+cd frontend/playground-frontend && npm install
+
+# Start the frontend application
+npm start
+```
+
+Your application will be available at:
+- 🌐 Main URL: `http://localhost:3000`
+- 🔄 Alternate port: `http://localhost:3001` (if port 3000 is in use)
 
 ## Features
 
-    User authentication
-    Responsive design with mobile-first approach
-    Interactive form elements
-    Navigation sidebar with smooth transitions
-    Breadcrumb navigation
-    Mobile-friendly hamburger menu
+-  User authentication
+-  Responsive design with mobile-first approach
+-  Interactive form elements
+-  Modern UI components:
+  - Navigation sidebar with smooth transitions
+  - Breadcrumb navigation
+  - Mobile-friendly hamburger menu
+  - Form inputs with animations
 
-## Prerequisites
+##  Project Structure
 
 - Node.js (v14 or higher)
 - npm (v6 or higher)
@@ -67,6 +78,9 @@ The application will be available at `http://localhost:3000`
 
 ```
 playground-app/
+├── backend/
+│   ├── package.json
+│   └── server.js
 ├── frontend/
 │   └── playground-frontend/
 │       ├── public/
@@ -94,24 +108,43 @@ playground-app/
 │           └── index.js
 ```
 
-## Available Scripts
+##  Available Scripts
 
-- `npm start`: Runs the app in development mode
+### Frontend (`/frontend/playground-frontend`)
+- `npm start`: Runs the app in development mode (port 3000)
 - `npm test`: Launches the test runner
 - `npm run build`: Builds the app for production
 - `npm run eject`: Ejects from create-react-app
 
-## Development
+### Backend (`/backend`)
+- `npm start`: Runs the server using Node.js
+- `npm run dev`: Runs the server with nodemon for development
 
-The application uses:
-- React for UI components
-- React Router for navigation
-- CSS3 for styling with:
-  - CSS Variables
-  - Flexbox
-  - Grid
-  - Media Queries
-  - Transitions and Animations
+## 🔍 Troubleshooting
+
+### Common Issues
+1. **Ports**: 
+   - Frontend runs on port 3000 (fallbacks to 3001 if 3000 is in use)
+   - Backend runs on port 5000
+2. **CORS Issues**: Ensure the backend is running and CORS is properly configured in `server.js`
+3. **Module not found**: Run `npm install` in both frontend and backend directories
+
+## 🛠️ Technologies Used
+
+### Frontend
+- **React 18**: Modern UI library
+- **React Router 6**: For navigation
+- **Modern CSS**:
+  - CSS Variables for theming
+  - Flexbox & Grid for layouts
+  - Media Queries for responsiveness
+  - Transitions & Animations
+  - Mobile-first approach
+
+### Backend
+- **Express**: Web framework for Node.js
+- **CORS**: For cross-origin resource sharing
+- **Body Parser**: For parsing incoming request bodies
 
 ## Contributing
 
