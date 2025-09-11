@@ -1,15 +1,21 @@
 # Playground App
 
-A modern full-stack playground application featuring a React frontend with beautiful UI components and an Express backend.
+A modern full-stack playground application featuring a React frontend with UI components and an Express backend, designed for practicing automation testing.
 
 ## Quick Start Guide
 
 ### Prerequisites
 - Node.js (v14 or higher)
 - npm (v6 or higher)
+- Git
 
-### 1. Backend Setup
+### 1. Clone the Repository
+```bash
+git clone https://github.com/lleopereira/playground-app.git
+cd playground-app
+```
 
+### 2. Backend Setup
 ```bash
 # Navigate to backend directory and install dependencies
 cd backend && npm install
@@ -20,8 +26,7 @@ npm start
 
 Your backend API will be running at `http://localhost:5000`
 
-### 2. Frontend Setup
-
+### 3. Frontend Setup
 ```bash
 # Open a new terminal, navigate to frontend directory and install dependencies
 cd frontend/playground-frontend && npm install
@@ -36,43 +41,41 @@ Your application will be available at:
 
 ## Features
 
--  User authentication
--  Responsive design with mobile-first approach
--  Interactive form elements
--  Modern UI components:
+### Core Features
+- User authentication (mock auth for testing)
+- Responsive design with mobile-first approach
+- Modern UI components:
   - Navigation sidebar with smooth transitions
   - Breadcrumb navigation
   - Mobile-friendly hamburger menu
   - Form inputs with animations
 
-##  Project Structure
+### Testing Pages
+- `/` - Login page
+- `/playground` - Main playground
+- `/inputs` - Input fields testing page with various input elements
+- More testing pages coming soon...
 
-- Node.js (v14 or higher)
-- npm (v6 or higher)
+### Technical Features
+- React 19.1.1 with hooks
+- React Router DOM 7.8.2 for navigation
+- Axios for API calls
+- Testing utilities (@testing-library)
+- Modern CSS with responsive design
 
-## Installation
+## Browser Support
 
-1. Clone the repository:
-```bash
-git clone [your-repository-url]
-```
+The application supports:
+- Latest versions of Chrome, Firefox, and Edge
+- Mobile-responsive design for tablets and phones
 
-2. Navigate to the frontend directory:
-```bash
-cd playground-app/frontend/playground-frontend
-```
+## Contributing
 
-3. Install dependencies:
-```bash
-npm install
-```
-
-4. Start the development server:
-```bash
-npm start
-```
-
-The application will be available at `http://localhost:3000`
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## Project Structure
 
@@ -120,8 +123,6 @@ playground-app/
 - `npm start`: Runs the server using Node.js
 - `npm run dev`: Runs the server with nodemon for development
 
-## 🔍 Troubleshooting
-
 ### Common Issues
 1. **Ports**: 
    - Frontend runs on port 3000 (fallbacks to 3001 if 3000 is in use)
@@ -129,7 +130,7 @@ playground-app/
 2. **CORS Issues**: Ensure the backend is running and CORS is properly configured in `server.js`
 3. **Module not found**: Run `npm install` in both frontend and backend directories
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 ### Frontend
 - **React 18**: Modern UI library
