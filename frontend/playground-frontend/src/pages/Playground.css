@@ -1,0 +1,109 @@
+.page-content {
+  padding: clamp(1rem, 4vw, 2rem);
+  max-width: 1536px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Main content */
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Robot image styling */
+#robot-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-height: 45vh;
+  min-height: 300px;
+  margin-bottom: 3rem;
+  object-fit: contain;
+}
+
+/* Content styling */
+#welcome-title {
+  font-style: italic;
+  margin-bottom: clamp(1.5rem, 4vw, 2rem);
+  text-align: center;
+  width: 100%;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--primary-color);
+}
+
+#welcome-paragraph {
+  max-width: min(70%, 800px);
+  margin: 0 auto;
+  text-align: center;
+  color: #444;
+  line-height: 1.8;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .main {
+    padding: 1.5rem;
+  }
+  
+  #robot-img {
+    max-height: 35vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 1rem;
+  }
+  
+  #robot-img {
+    max-height: 30vh;
+  }
+  
+  #welcome-paragraph {
+    max-width: 90%;
+  }
+  
+  .logout {
+    top: 15px;
+    right: 15px;
+  }
+}
+
+/* Logout button */
+.logout {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  cursor: pointer;
+  z-index: 100;
+  background: white;
+  padding: 8px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logout:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.logout img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}

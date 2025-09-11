@@ -1,0 +1,48 @@
+.breadcrumb {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999; /* Just below the hamburger menu which is 1002 */
+}
+
+.breadcrumb a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.breadcrumb .separator {
+  color: #999;
+  margin: 0 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .breadcrumb {
+    top: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .breadcrumb {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+}

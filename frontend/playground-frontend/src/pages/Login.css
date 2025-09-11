@@ -1,0 +1,105 @@
+.login-background {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: url("../assets/night-sky.png") no-repeat center center fixed;
+  background-size: cover;
+  image-rendering: pixelated;
+  position: relative;
+}
+
+.login-background::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+.login-container {
+  z-index: 1;
+  background: white;
+  padding: 40px 30px;
+  border-radius: 16px;
+  width: 360px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-title {
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  color: #222;
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #444;
+}
+
+input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #282a2c;
+  box-shadow: 0 0 4px rgba(0, 119, 255, 0.5);
+}
+
+button {
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #0077ff;
+  color: white;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #005fcc;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+.success-message {
+  color: green;
+  font-size: 14px;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+.login-title {
+  font-style: italic;
+}
+
+.login-label {
+  font-style: italic;
+}
