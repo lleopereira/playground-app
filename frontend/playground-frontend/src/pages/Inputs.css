@@ -14,7 +14,8 @@
 }
 
 .input-form {
-  min-width: 800px;
+  width: 100%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -22,6 +23,7 @@
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
 }
 
 .input-group {
@@ -98,76 +100,40 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
-  .input-group {
-    gap: 0.4rem;
-  }
-  
-  input {
-    font-size: 0.95rem;
-  }
-  
-  button[type="submit"] {
-    padding: 0.9rem;
-  }
-}
-
 @media (max-width: 768px) {
   .page-content {
     padding: 1rem;
-    gap: 1.5rem;
-  }
-
-  #page-title {
-    font-size: 1.75rem;
   }
 
   .input-form {
     padding: 1rem;
-    gap: 1rem;
   }
 
-  input {
-    padding: 0.7rem;
-    font-size: 0.9rem;
+  input[type="number"],
+  input[type="date"],
+  input[type="search"],
+  input[type="text"],
+  input[type="email"] {
+    width: 100% !important;
   }
-  
-  label {
-    font-size: 0.9rem;
+
+  .input-group {
+    width: 100%;
   }
 
   button[type="submit"] {
-    padding: 0.8rem;
-    font-size: 0.95rem;
-  }
-  
-  input[type="number"] {
     width: 100%;
   }
 }
 
-@media (max-width: 480px) {
-  .page-content {
-    padding: 0.8rem;
-    gap: 1.25rem;
-  }
-
-  #page-title {
-    font-size: 1.5rem;
-  }
-
+@media (max-width: 1024px) and (min-width: 769px) {
   .input-form {
-    padding: 1rem;
-    gap: 0.8rem;
+    max-width: 90%;
+    padding: 1.5rem;
   }
 
-  input {
-    padding: 0.6rem;
-    font-size: 0.85rem;
-  }
-  
-  button[type="submit"] {
-    padding: 0.7rem;
-    font-size: 0.9rem;
+  input[type="number"],
+  input[type="search"] {
+    width: 100%;
   }
 }

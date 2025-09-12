@@ -72,14 +72,14 @@ button {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  background: #0077ff;
+  background: #266327;
   color: white;
   font-weight: bold;
   transition: background 0.3s ease;
 }
 
 button:hover {
-  background: #005fcc;
+  background: #24471b;
 }
 
 .error-message {

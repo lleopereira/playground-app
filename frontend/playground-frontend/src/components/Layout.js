@@ -38,6 +38,10 @@ export default function Layout({ children }) {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
   return (
     <div className={`layout-container ${isSidebarOpen ? 'sidebar-open' : ''}`}>
       <div className="top-bar">
@@ -54,7 +58,7 @@ export default function Layout({ children }) {
       {/* Mobile Menu Button */}
       <button 
         ref={menuButtonRef}
-        className="menu-toggle" 
+        className={`menu-toggle ${isSidebarOpen ? 'hidden' : ''}`}
         onClick={toggleSidebar}
         aria-label="Toggle menu"
         data-test-id="menu-toggle"
@@ -75,7 +79,7 @@ export default function Layout({ children }) {
         id="sidebar"
       >
         <h3 id="sidebar-title" data-test-id="sidebar-title">
-          <Link to="/playground" className="sidebar-title-link">
+          <Link to="/playground" className="sidebar-title-link" onClick={closeSidebar}>
             Playground
           </Link>
         </h3>
@@ -86,6 +90,7 @@ export default function Layout({ children }) {
               id="link-input-fields"
               data-test-id="link-input-fields"
               className={location.pathname === '/inputs' ? 'active' : ''}
+              onClick={closeSidebar}
             >
               Input Fields
             </Link>
@@ -96,6 +101,7 @@ export default function Layout({ children }) {
               id="link-textarea"
               data-test-id="link-textarea"
               className={location.pathname === '/textarea' ? 'active' : ''}
+              onClick={closeSidebar}
             >
               Text Area
             </Link>
