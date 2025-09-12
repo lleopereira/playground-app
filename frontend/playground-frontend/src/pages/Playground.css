@@ -33,12 +33,12 @@
 }
 
 /* Robot image styling */
-#robot-img {
+.robot-image {
   display: block;
   width: auto;
   height: auto;
-  max-height: 45vh;
-  min-height: 300px;
+  max-height: 50vh;
+  max-width: 500px;
   margin-bottom: 2rem;
   object-fit: contain;
 }
@@ -68,8 +68,9 @@
     padding: 1.5rem;
   }
   
-  #robot-img {
+  .robot-image {
     max-height: 35vh;
+    max-width: 370px;
   }
 }
 
@@ -78,8 +79,9 @@
     padding: 1rem;
   }
   
-  #robot-img {
+  .robot-image {
     max-height: 30vh;
+    max-width: 300px;
   }
   
   #welcome-paragraph {

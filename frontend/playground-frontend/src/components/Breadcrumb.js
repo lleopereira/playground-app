@@ -25,12 +25,37 @@ export default function Breadcrumb() {
   };
 
   return (
-    <div className="breadcrumb">
-      <Link to="/playground">Playground</Link>
+    <div 
+      className="breadcrumb" 
+      id="breadcrumb-navigation"
+      data-test-id="breadcrumb"
+      role="navigation"
+      aria-label="Breadcrumb navigation"
+    >
+      <Link 
+        to="/playground"
+        id="breadcrumb-home-link"
+        data-test-id="breadcrumb-home"
+        className="breadcrumb-link"
+      >
+        Playground
+      </Link>
       {pathSegments.length > 0 && (
         <>
-          <span className="separator">/</span>
-          <span>{getPageName(pathSegments[pathSegments.length - 1])}</span>
+          <span 
+            className="separator"
+            data-test-id="breadcrumb-separator"
+            aria-hidden="true"
+          >
+            /
+          </span>
+          <span 
+            className="breadcrumb-current"
+            data-test-id="breadcrumb-current-page"
+            aria-current="page"
+          >
+            {getPageName(pathSegments[pathSegments.length - 1])}
+          </span>
         </>
       )}
     </div>

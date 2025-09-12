@@ -56,42 +56,99 @@ export default function Login() {
   };
 
   return (
-    <div className="login-background">
-      <div className="login-container">
-        <h2 className="login-title">Login</h2>
+    <div 
+      className="login-background"
+      id="login-page"
+      data-test-id="login-page-background"
+    >
+      <div 
+        className="login-container"
+        id="login-form-container"
+        data-test-id="login-container"
+        role="main"
+        aria-labelledby="page-heading"
+      >
+        <h2 
+          className="login-title"
+          id="page-heading"
+          data-test-id="login-title-heading"
+        >
+          Login
+        </h2>
 
-        {error && <p className="error-message">{error}</p>}
+        {error && (
+          <p 
+            className="error-message"
+            id="login-error"
+            data-test-id="login-error-message"
+            role="alert"
+            aria-live="polite"
+          >
+            {error}
+          </p>
+        )}
 
-        <div className="form-group">
-          <label htmlFor="username" className="login-label">Usuário</label>
+        <div 
+          className="form-group"
+          data-test-id="username-form-group"
+          id="username-group"
+        >
+          <label 
+            htmlFor="username" 
+            className="login-label"
+            data-test-id="username-label"
+          >
+            Usuário
+          </label>
           <input
             id="username"
-            data-test-id="input-username"
+            data-test-id="username-input"
             type="text"
+            name="username"
             placeholder="Informe seu usuário"
             value={username}
             onChange={e => setUsername(e.target.value)}
             onKeyDown={handleKeyPress}
+            autoComplete="username"
+            required
+            aria-describedby={error ? "login-error" : undefined}
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="password" className="login-label">Senha</label>
+        <div 
+          className="form-group"
+          data-test-id="password-form-group"
+          id="password-group"
+        >
+          <label 
+            htmlFor="password" 
+            className="login-label"
+            data-test-id="password-label"
+          >
+            Senha
+          </label>
           <input
             id="password"
-            data-test-id="input-password"
+            data-test-id="password-input"
             type="password"
+            name="password"
             placeholder="Informe a sua senha"
             value={password}
             onChange={e => setPassword(e.target.value)}
             onKeyDown={handleKeyPress}
+            autoComplete="current-password"
+            required
+            aria-describedby={error ? "login-error" : undefined}
           />
         </div>
 
         <button
           id="login-button"
-          data-test-id="button-login"
+          data-test-id="login-submit-button"
+          type="button"
+          className="login-button"
           onClick={handleLogin}
+          aria-label="Submit login form"
         >
           Entrar
         </button>
