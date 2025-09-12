@@ -40,5 +40,5 @@ Thumbs.db
 docker-compose.override.yml
 **/tmp/
 
-# Setup files
+# Documentation
 SETUP_GUIDE.md
