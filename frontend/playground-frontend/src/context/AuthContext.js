@@ -3,11 +3,17 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    // Initialize auth state from localStorage
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Check if user was previously logged in
     const token = localStorage.getItem('auth_token');
-    return !!token;
-  });
+    const isValidToken = token === 'true'; // Simple validation for now
+    
+    setIsAuthenticated(isValidToken);
+    setIsLoading(false);
+  }, []);
 
   useEffect(() => {
     // Update localStorage when auth state changes
@@ -32,6 +38,21 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(false);
     localStorage.removeItem('auth_token');
   };
+
+  // Show loading while checking authentication
+  if (isLoading) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh',
+        fontSize: '18px' 
+      }}>
+        Loading...
+      </div>
+    );
+  }
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>

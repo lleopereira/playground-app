@@ -85,6 +85,8 @@ function App() {
               </Layout>
             </ProtectedRoute>
           } />
+          {/* Catch all route - redirect to login */}
+          <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
