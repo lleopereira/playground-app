@@ -8,27 +8,31 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     // Check if user was previously logged in
-    const token = localStorage.getItem('auth_token');
-    const isValidToken = token === 'true'; // Simple validation for now
-    
-    setIsAuthenticated(isValidToken);
-    setIsLoading(false);
-  }, []);
+    const checkAuth = () => {
+      try {
+        const token = localStorage.getItem('auth_token');
+        const isValidToken = token === 'true';
+        
+        setIsAuthenticated(isValidToken);
+        setIsLoading(false);
+      } catch (error) {
+        setIsAuthenticated(false);
+        setIsLoading(false);
+      }
+    };
 
-  useEffect(() => {
-    // Update localStorage when auth state changes
-    if (isAuthenticated) {
-      localStorage.setItem('auth_token', 'true');
-    } else {
-      localStorage.removeItem('auth_token');
-    }
-  }, [isAuthenticated]);
+    // Small delay to ensure localStorage is ready
+    const timeoutId = setTimeout(checkAuth, 100);
+    
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   const login = (username, password) => {
     // Here you would typically make an API call to validate credentials
     // For now, we'll just set authenticated to true
     if (username && password) {
       setIsAuthenticated(true);
+      localStorage.setItem('auth_token', 'true');
       return true;
     }
     return false;
@@ -55,7 +59,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, isLoading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

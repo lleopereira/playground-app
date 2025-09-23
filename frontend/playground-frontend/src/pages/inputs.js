@@ -21,6 +21,19 @@ export default function Inputs() {
     }));
   };
 
+  const handlePhoneChange = (e) => {
+    let value = e.target.value;
+    // Remove all non-digits
+    value = value.replace(/\D/g, '');
+    // Limit to 11 digits
+    value = value.slice(0, 11);
+    
+    setFormData(prevState => ({
+      ...prevState,
+      phone: value
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowOverlay(true);
@@ -45,7 +58,6 @@ export default function Inputs() {
         className="input-form"
         id="inputs-form"
         data-test-id="input-form"
-        role="form"
         aria-label="Input fields demonstration form"
       >
         {/* Text Input */}
@@ -114,16 +126,23 @@ export default function Inputs() {
             Telefone:
           </label>
           <input
-            type="tel"
+            type="text"
             id="phone"
             name="phone"
             data-test-id="tel-input-phone"
             value={formData.phone}
-            onChange={handleInputChange}
+            onChange={handlePhoneChange}
             placeholder="(00) 00000-0000"
             aria-describedby="phone-description"
             autoComplete="tel"
+            inputMode="numeric"
+            maxLength="11"
+            pattern="[0-9]*"
+            title="Digite apenas números (máximo 11 dígitos)"
           />
+          <small style={{ color: '#666', fontSize: '12px' }}>
+            Apenas números • {formData.phone.length}/11 dígitos
+          </small>
         </div>
 
         {/* Number Input */}

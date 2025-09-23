@@ -1,19 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 import "./Playground.css";
 import robotImage from "../assets/robot.gif";
 
 export default function Playground() {
-  const navigate = useNavigate();
-  const { logout } = useAuth();
-
-  // Logout handler
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
-
   return (
     <div 
       className="page-content"

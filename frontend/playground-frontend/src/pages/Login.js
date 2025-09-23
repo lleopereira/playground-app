@@ -14,7 +14,7 @@ export default function Login() {
   useEffect(() => {
     // If user is already authenticated, redirect to playground
     if (isAuthenticated) {
-      navigate('/playground');
+      navigate('/playground', { replace: true });
     }
   }, [isAuthenticated, navigate]);
 
