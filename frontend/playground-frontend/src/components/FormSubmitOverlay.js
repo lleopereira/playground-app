@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './FormSubmitOverlay.css';
 
 export default function FormSubmitOverlay({ formData, onClose }) {
+  const dialogRef = useRef(null);
+  const closeButtonRef = useRef(null);
+
+  // Focus management for accessibility
+  useEffect(() => {
+    if (closeButtonRef.current) {
+      closeButtonRef.current.focus();
+    }
+
+    // Trap focus within dialog
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
   return (
     <div 
       className="overlay"
@@ -10,6 +30,8 @@ export default function FormSubmitOverlay({ formData, onClose }) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="overlay-title"
+      aria-describedby="submitted-data"
+      ref={dialogRef}
     >
       <div 
         className="overlay-content" 
@@ -158,6 +180,7 @@ export default function FormSubmitOverlay({ formData, onClose }) {
           id="close-overlay-btn"
           type="button"
           aria-label="Fechar modal de dados enviados"
+          ref={closeButtonRef}
         >
           Fechar
         </button>
