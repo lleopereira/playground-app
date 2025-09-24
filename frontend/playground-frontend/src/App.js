@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Playground from "./pages/Playground";
 import Inputs from "./pages/inputs";
+import TextArea from "./pages/TextArea";
 import UnderConstruction from "./pages/UnderConstruction";
 import Layout from "./components/Layout";
 import { AuthProvider } from "./context/AuthContext";
@@ -32,7 +33,7 @@ function App() {
           <Route path="/textarea" element={
             <ProtectedRoute>
               <Layout>
-                <UnderConstruction />
+                <TextArea />
               </Layout>
             </ProtectedRoute>
           } />

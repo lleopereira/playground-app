@@ -36,7 +36,7 @@
   position: fixed;
   top: 1rem;
   left: 1rem;
-  z-index: 1002;
+  z-index: 1010;
   background-color: var(--primary-color);
   border: none;
   width: 40px;
@@ -52,6 +52,14 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+}
+
+/* Hide hamburger menu when overlay is open */
+body.overlay-open .menu-toggle {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .menu-toggle svg {
@@ -81,7 +89,11 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  z-index: 1000;
+  z-index: 1010;
+  background-color: rgba(245, 245, 245, 0.95);
+  padding: 0.5rem;
+  border-radius: 4px;
+  backdrop-filter: blur(5px);
 }
 
 .logout-button {
@@ -119,6 +131,27 @@
   .main-content {
     margin-left: 0;
     width: 100%;
+    padding-top: 100px; /* Increased padding to account for fixed elements */
+    padding-bottom: 2rem; /* Add bottom padding for better scrolling */
+  }
+
+  /* Specific styling for page titles on mobile */
+  .main-content .page-title,
+  .main-content h1[data-test-id="page-title-heading"] {
+    margin-top: 1rem !important;
+    margin-bottom: 1.5rem !important;
+    padding-top: 0.5rem;
+  }
+
+  /* Ensure hamburger menu has higher z-index and better background */
+  .menu-toggle {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1015;
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
 
   .sidebar {
@@ -147,11 +180,6 @@
 
   .layout-main {
     padding-left: 0;
-  }
-
-  .main-content {
-    margin-left: 0;
-    width: 100%;
   }
 }
 
@@ -195,6 +223,13 @@
 
   .menu-toggle {
     display: none; /* Hide hamburger menu in this range */
+  }
+
+  /* Add some top margin to page titles for better spacing */
+  .main-content .page-title,
+  .main-content h1[data-test-id="page-title-heading"] {
+    margin-top: 0.5rem !important;
+    padding-top: 0.25rem;
   }
 
   .layout-main {

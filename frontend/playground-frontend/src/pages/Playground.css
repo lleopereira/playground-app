@@ -88,9 +88,46 @@
     max-width: 90%;
   }
   
+  #welcome-title {
+    margin-top: 0; /* Let Layout handle the top spacing */
+  }
+  
   .logout {
     top: 15px;
     right: 15px;
+  }
+}
+
+/* Mobile specific styles */
+@media (max-width: 481px) {
+  .page-content {
+    padding: 0.75rem;
+    padding-top: 0.5rem; /* Reduce top padding since Layout now provides spacing */
+  }
+  
+  .main {
+    padding: 0.75rem;
+  }
+  
+  #welcome-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    margin-top: 0; /* Let Layout handle the top spacing */
+  }
+  
+  .robot-image {
+    max-height: 25vh;
+    max-width: 250px;
+  }
+  
+  .logout {
+    top: 10px;
+    right: 10px;
+  }
+  
+  .logout img {
+    width: 20px;
+    height: 20px;
   }
 }
 

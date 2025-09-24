@@ -1,0 +1,215 @@
+/* TextArea.css */
+
+.page-content {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  min-height: calc(100vh - 60px);
+}
+
+.page-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.textarea-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: rgb(241, 239, 239);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.textarea-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.textarea-label {
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+textarea {
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  line-height: 1.4;
+  resize: vertical;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #007acc;
+  box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.1);
+}
+
+textarea:hover {
+  border-color: #bbb;
+}
+
+textarea::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+.special-textarea {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border: 2px solid #007acc;
+  font-style: italic;
+}
+
+.special-textarea:focus {
+  background: white;
+  font-style: normal;
+  border-color: #0056b3;
+  box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2);
+}
+
+textarea:required {
+  border-left: 4px solid #ff6b6b;
+}
+
+textarea:required:valid {
+  border-left: 4px solid #51cf66;
+}
+
+.submit-button {
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, #1e4e02 0%, #33be56 100%);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: center;
+  min-width: 120px;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+.submit-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .page-content {
+    padding: 1.5rem;
+  }
+  
+  .textarea-form {
+    padding: 1.5rem;
+  }
+  
+  .page-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-content {
+    padding: 1rem;
+  }
+  
+  .textarea-form {
+    padding: 1rem;
+  }
+  
+  .page-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  textarea {
+    min-height: 100px;
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 481px) {
+  .page-content {
+    padding: 0.75rem;
+    padding-top: 0.5rem; /* Reduce top padding since Layout now provides spacing */
+  }
+  
+  .textarea-form {
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+  
+  .page-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    margin-top: 0; /* Let Layout handle the top spacing */
+  }
+  
+  .textarea-label {
+    font-size: 0.9rem;
+  }
+  
+  textarea {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+}
+
+/* Accessibility enhancements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  textarea {
+    border-width: 3px;
+  }
+  
+  .submit-button {
+    background: #000;
+    color: #fff;
+    border: 2px solid #fff;
+  }
+}
+
+/* Focus visible for keyboard users */
+textarea:focus-visible {
+  outline: 2px solid #007acc;
+  outline-offset: 2px;
+}
+
+.submit-button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}

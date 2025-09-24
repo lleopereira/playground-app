@@ -11,6 +11,9 @@ export default function FormSubmitOverlay({ formData, onClose }) {
       closeButtonRef.current.focus();
     }
 
+    // Add class to body to hide hamburger menu
+    document.body.classList.add('overlay-open');
+
     // Trap focus within dialog
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -19,7 +22,12 @@ export default function FormSubmitOverlay({ formData, onClose }) {
     };
 
     document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    
+    // Cleanup function
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.classList.remove('overlay-open');
+    };
   }, [onClose]);
 
   return (
@@ -52,125 +60,227 @@ export default function FormSubmitOverlay({ formData, onClose }) {
           data-test-id="submitted-data-list"
           id="submitted-data"
         >
-          <div 
-            className="data-item"
-            data-test-id="name-data-item"
-            id="name-item"
-          >
-            <span 
-              className="label"
-              data-test-id="name-label"
+          {/* Conditional rendering for different form types */}
+          {formData.name !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="name-data-item"
+              id="name-item"
             >
-              Nome:
-            </span>
-            <span 
-              className="value" 
-              data-test-id="submitted-name"
-              id="submitted-name-value"
-            >
-              {formData.name || '-'}
-            </span>
-          </div>
+              <span 
+                className="label"
+                data-test-id="name-label"
+              >
+                Nome:
+              </span>
+              <span 
+                className="value" 
+                data-test-id="submitted-name"
+                id="submitted-name-value"
+              >
+                {formData.name || '-'}
+              </span>
+            </div>
+          )}
           
-          <div 
-            className="data-item"
-            data-test-id="email-data-item"
-            id="email-item"
-          >
-            <span 
-              className="label"
-              data-test-id="email-label"
+          {formData.email !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="email-data-item"
+              id="email-item"
             >
-              Email:
-            </span>
-            <span 
-              className="value" 
-              data-test-id="submitted-email"
-              id="submitted-email-value"
-            >
-              {formData.email || '-'}
-            </span>
-          </div>
+              <span 
+                className="label"
+                data-test-id="email-label"
+              >
+                Email:
+              </span>
+              <span 
+                className="value" 
+                data-test-id="submitted-email"
+                id="submitted-email-value"
+              >
+                {formData.email || '-'}
+              </span>
+            </div>
+          )}
           
-          <div 
-            className="data-item"
-            data-test-id="phone-data-item"
-            id="phone-item"
-          >
-            <span 
-              className="label"
-              data-test-id="phone-label"
+          {formData.phone !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="phone-data-item"
+              id="phone-item"
             >
-              Telefone:
-            </span>
-            <span 
-              className="value" 
-              data-test-id="submitted-phone"
-              id="submitted-phone-value"
-            >
-              {formData.phone || '-'}
-            </span>
-          </div>
+              <span 
+                className="label"
+                data-test-id="phone-label"
+              >
+                Telefone:
+              </span>
+              <span 
+                className="value" 
+                data-test-id="submitted-phone"
+                id="submitted-phone-value"
+              >
+                {formData.phone || '-'}
+              </span>
+            </div>
+          )}
           
-          <div 
-            className="data-item"
-            data-test-id="number-data-item"
-            id="number-item"
-          >
-            <span 
-              className="label"
-              data-test-id="number-label"
+          {formData.number !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="number-data-item"
+              id="number-item"
             >
-              Número:
-            </span>
-            <span 
-              className="value" 
-              data-test-id="submitted-number"
-              id="submitted-number-value"
-            >
-              {formData.number || '-'}
-            </span>
-          </div>
+              <span 
+                className="label"
+                data-test-id="number-label"
+              >
+                Número:
+              </span>
+              <span 
+                className="value" 
+                data-test-id="submitted-number"
+                id="submitted-number-value"
+              >
+                {formData.number || '-'}
+              </span>
+            </div>
+          )}
           
-          <div 
-            className="data-item"
-            data-test-id="search-data-item"
-            id="search-item"
-          >
-            <span 
-              className="label"
-              data-test-id="search-label"
+          {formData.search !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="search-data-item"
+              id="search-item"
             >
-              Pesquisa:
-            </span>
-            <span 
-              className="value" 
-              data-test-id="submitted-search"
-              id="submitted-search-value"
-            >
-              {formData.search || '-'}
-            </span>
-          </div>
+              <span 
+                className="label"
+                data-test-id="search-label"
+              >
+                Pesquisa:
+              </span>
+              <span 
+                className="value" 
+                data-test-id="submitted-search"
+                id="submitted-search-value"
+              >
+                {formData.search || '-'}
+              </span>
+            </div>
+          )}
           
-          <div 
-            className="data-item"
-            data-test-id="date-data-item"
-            id="date-item"
-          >
-            <span 
-              className="label"
-              data-test-id="date-label"
+          {formData.date !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="date-data-item"
+              id="date-item"
             >
-              Data:
-            </span>
-            <span 
-              className="value" 
-              data-test-id="submitted-date"
-              id="submitted-date-value"
+              <span 
+                className="label"
+                data-test-id="date-label"
+              >
+                Data:
+              </span>
+              <span 
+                className="value" 
+                data-test-id="submitted-date"
+                id="submitted-date-value"
+              >
+                {formData.date || '-'}
+              </span>
+            </div>
+          )}
+
+          {/* TextArea fields */}
+          {formData.basicTextarea !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="basic-textarea-data-item"
+              id="basic-textarea-item"
             >
-              {formData.date || '-'}
-            </span>
-          </div>
+              <span 
+                className="label"
+                data-test-id="basic-textarea-label"
+              >
+                Texto Básico:
+              </span>
+              <span 
+                className="value textarea-value" 
+                data-test-id="submitted-basic-textarea"
+                id="submitted-basic-textarea-value"
+              >
+                {formData.basicTextarea || '-'}
+              </span>
+            </div>
+          )}
+
+          {formData.descriptionTextarea !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="description-textarea-data-item"
+              id="description-textarea-item"
+            >
+              <span 
+                className="label"
+                data-test-id="description-textarea-label"
+              >
+                Descrição:
+              </span>
+              <span 
+                className="value textarea-value" 
+                data-test-id="submitted-description-textarea"
+                id="submitted-description-textarea-value"
+              >
+                {formData.descriptionTextarea || '-'}
+              </span>
+            </div>
+          )}
+
+          {formData.commentTextarea !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="comment-textarea-data-item"
+              id="comment-textarea-item"
+            >
+              <span 
+                className="label"
+                data-test-id="comment-textarea-label"
+              >
+                Comentários:
+              </span>
+              <span 
+                className="value textarea-value" 
+                data-test-id="submitted-comment-textarea"
+                id="submitted-comment-textarea-value"
+              >
+                {formData.commentTextarea || '-'}
+              </span>
+            </div>
+          )}
+
+          {formData.messageTextarea !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="message-textarea-data-item"
+              id="message-textarea-item"
+            >
+              <span 
+                className="label"
+                data-test-id="message-textarea-label"
+              >
+                Mensagem Especial:
+              </span>
+              <span 
+                className="value textarea-value" 
+                data-test-id="submitted-message-textarea"
+                id="submitted-message-textarea-value"
+              >
+                {formData.messageTextarea || '-'}
+              </span>
+            </div>
+          )}
         </div>
 
         <button 

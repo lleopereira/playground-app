@@ -12,6 +12,13 @@
   animation: fadeIn 0.3s ease;
 }
 
+/* Hide hamburger menu when overlay is showing */
+body.overlay-open .menu-toggle {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 .overlay-content {
   background: white;
   padding: 2rem;
@@ -19,6 +26,8 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   width: 90%;
   max-width: 500px;
+  max-height: 90vh; /* Prevent modal from being too tall */
+  overflow-y: auto; /* Allow scrolling if content is too tall */
   animation: slideIn 0.3s ease;
 }
 
@@ -55,6 +64,20 @@
 .value {
   color: #333;
   flex-grow: 1;
+  word-break: break-word;
+}
+
+.textarea-value {
+  white-space: pre-wrap;
+  max-height: 120px;
+  overflow-y: auto;
+  padding: 0.5rem;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9em;
+  line-height: 1.4;
+  border: 1px solid #e9ecef;
 }
 
 .close-button {
@@ -92,17 +115,88 @@
 }
 
 /* Responsive Design */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .overlay-content {
+    width: 95%;
+    max-height: 85vh; /* More room for mobile */
     padding: 1.5rem;
+  }
+
+  .overlay-title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .data-list {
+    gap: 0.75rem;
+  }
+
+  .data-item {
+    padding: 0.4rem;
+  }
+
+  .textarea-value {
+    max-height: 100px; /* Reduce height on mobile */
+    font-size: 0.85em;
+  }
+}
+
+@media (max-width: 481px) {
+  .overlay {
+    padding: 1rem; /* Add padding around the overlay */
+    align-items: flex-start; /* Align to top instead of center */
+    padding-top: 2rem; /* Space from top */
+  }
+
+  .overlay-content {
+    width: 100%;
+    max-width: none;
+    max-height: 80vh; /* More conservative height for small screens */
+    padding: 1rem;
+    margin: 0; /* Remove any margin */
+    border-radius: 6px;
+  }
+
+  .overlay-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .data-list {
+    gap: 0.5rem;
   }
 
   .data-item {
     flex-direction: column;
     gap: 0.25rem;
+    padding: 0.3rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    border-bottom: none; /* Remove border since we have background */
   }
 
   .label {
     width: auto;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0.1rem;
+  }
+
+  .value {
+    font-size: 0.9rem;
+    padding-left: 0.5rem;
+    color: #333;
+  }
+
+  .textarea-value {
+    max-height: 80px; /* Even smaller for mobile */
+    font-size: 0.8em;
+    padding: 0.4rem;
+  }
+
+  .close-button {
+    margin-top: 1rem;
+    padding: 0.9rem;
+    font-size: 0.95rem;
   }
 }

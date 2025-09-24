@@ -109,6 +109,10 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     padding: 1rem;
   }
 
+  .page-title {
+    margin-top: 0; /* Let Layout handle the top spacing */
+  }
+
   input[type="number"],
   input[type="date"],
   input[type="search"],
@@ -135,5 +139,41 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
   input[type="number"],
   input[type="search"] {
     width: 100%;
+  }
+}
+
+/* Mobile specific styles */
+@media (max-width: 481px) {
+  .page-content {
+    padding: 0.75rem;
+    padding-top: 0.5rem; /* Reduce top padding since Layout now provides spacing */
+  }
+
+  .input-form {
+    padding: 0.75rem;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    margin-top: 0; /* Let Layout handle the top spacing */
+  }
+
+  .input-label {
+    font-size: 0.9rem;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="search"],
+  input[type="date"] {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .submit-button {
+    width: 100%;
+    padding: 1rem;
   }
 }
