@@ -54,7 +54,7 @@ export default function Layout({ children }) {
         data-test-id="top-bar"
         role="banner"
       >
-        <Breadcrumb />
+        <Breadcrumb tabIndex="2" />
         <button 
           className="logout-button" 
           onClick={handleLogout}
@@ -62,6 +62,7 @@ export default function Layout({ children }) {
           id="logout-btn"
           type="button"
           aria-label="Logout from application"
+          tabIndex="3"
         >
           Logout
         </button>
@@ -78,6 +79,7 @@ export default function Layout({ children }) {
         type="button"
         aria-expanded={isSidebarOpen}
         aria-controls="sidebar-navigation"
+        tabIndex="0"
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M3 12H21" stroke="white" strokeWidth="2" strokeLinecap="round"/>
@@ -107,6 +109,7 @@ export default function Layout({ children }) {
             data-test-id="sidebar-home-link"
             id="sidebar-playground-link"
             aria-label="Go to Playground home"
+            tabIndex="1"
           >
             Playground
           </Link>

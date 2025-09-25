@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Breadcrumb.css';
 
-export default function Breadcrumb() {
+export default function Breadcrumb({ tabIndex }) {
   const location = useLocation();
   const pathSegments = location.pathname.split('/').filter(segment => segment);
   
@@ -37,6 +37,7 @@ export default function Breadcrumb() {
         id="breadcrumb-home-link"
         data-test-id="breadcrumb-home"
         className="breadcrumb-link"
+        tabIndex={tabIndex}
       >
         Playground
       </Link>
