@@ -121,7 +121,7 @@ export default function TextArea() {
             data-test-id="comment-textarea-label"
             className="textarea-label"
           >
-            Comentários:
+            Comentários<span className="required-asterisk" aria-label="required">*</span>
           </label>
           <textarea
             id="commentTextarea"

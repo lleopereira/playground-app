@@ -1,8 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import "./Playground.css";
 import robotImage from "../assets/robot.gif";
 
 export default function Playground() {
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   return (
     <div 
       className="page-content"
@@ -10,6 +20,18 @@ export default function Playground() {
       data-test-id="playground-page-content"
       role="main"
     >
+      {/* Logout button for playground page only */}
+      <button 
+        className="playground-logout-button" 
+        onClick={handleLogout}
+        data-test-id="playground-logout-button"
+        id="playground-logout-btn"
+        type="button"
+        aria-label="Logout from application"
+      >
+        Logout
+      </button>
+
       {/* Central Image (placeholder for 8-bit robot) */}
       <img
         src={robotImage}

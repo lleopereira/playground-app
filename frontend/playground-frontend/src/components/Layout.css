@@ -46,6 +46,9 @@
   padding: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
+  display: flex; /* Use flexbox for perfect centering */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
 }
 
 .menu-toggle:hover {
@@ -78,9 +81,10 @@ body.overlay-open .menu-toggle {
 }
 
 .menu-toggle svg {
-  width: 24px;
-  height: 24px;
+  width: 20px; /* Slightly smaller for better proportion */
+  height: 20px; /* Slightly smaller for better proportion */
   transition: transform 0.2s ease;
+  flex-shrink: 0; /* Prevent SVG from shrinking */
 }
 
 .menu-toggle:hover svg {
@@ -109,7 +113,7 @@ body.overlay-open .menu-toggle {
   display: flex;
   align-items: center;
   gap: 1rem;
-  z-index: 1010;
+  z-index: 1000; /* Lower z-index so sidebar can appear above */
   background-color: rgba(245, 245, 245, 0.95);
   padding: 0.5rem;
   border-radius: 4px;
@@ -120,11 +124,14 @@ body.overlay-open .menu-toggle {
   background-color: var(--primary-color);
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem; /* Smaller padding - was 0.5rem 1rem */
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.8rem; /* Smaller font - was 0.9rem */
+  font-weight: 500; /* Lighter weight */
   transition: all 0.3s ease;
+  min-width: 80px; /* Smaller minimum width */
+  text-align: center; /* Center text */
 }
 
 .logout-button:hover {
@@ -156,7 +163,7 @@ body.overlay-open .menu-toggle {
   color: white;
   padding: 1rem;
   overflow-y: auto;
-  z-index: 1001;
+  z-index: 1005; /* Higher z-index than top bar */
   transition: transform 0.3s ease;
 }
 
@@ -165,16 +172,67 @@ body.overlay-open .menu-toggle {
   .main-content {
     margin-left: 0;
     width: 100%;
-    padding-top: 100px; /* Increased padding to account for fixed elements */
+    padding-top: 50px; /* Significantly reduced from 80px for ultra-compact top bar */
     padding-bottom: 2rem; /* Add bottom padding for better scrolling */
   }
 
   /* Specific styling for page titles on mobile */
   .main-content .page-title,
   .main-content h1[data-test-id="page-title-heading"] {
-    margin-top: 1rem !important;
+    margin-top: 1.5rem !important;
     margin-bottom: 1.5rem !important;
     padding-top: 0.5rem;
+  }
+
+  /* Mobile adjustments for top bar */
+  .top-bar {
+    top: 0.125rem;
+    right: 0.125rem;
+    left: 3.5rem; /* Leave space for hamburger menu */
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end; /* Always push logout to the right */
+    gap: 0.125rem;
+    padding: 0.2rem 0.3rem;
+    max-width: calc(100vw - 3.75rem); /* Account for hamburger space */
+    border-radius: 1px;
+    min-height: auto;
+  }
+
+  /* Center logout button on mobile */
+  .logout-button {
+    align-self: center; /* Center the button horizontally */
+    padding: 0.15rem 0.35rem; /* Ultra-compact padding on mobile */
+    font-size: 0.65rem; /* Very small font on mobile */
+    min-width: 50px; /* Very small minimum width on mobile */
+    border-radius: 1px; /* Minimal border radius to match */
+    height: auto;
+    line-height: 1.2;
+  }
+
+  /* Make breadcrumb more compact on mobile */
+  .top-bar .breadcrumb {
+    font-size: 0.65rem;
+    line-height: 1.2;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: auto; /* Push logout button to the right */
+  }
+
+  .top-bar .breadcrumb-item {
+    font-size: 0.65rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Ensure logout button always stays on the right */
+  .top-bar .logout-button {
+    margin-left: auto; /* This will push the logout button to the far right */
   }
 
   /* Ensure hamburger menu has higher z-index and better background */
@@ -186,6 +244,14 @@ body.overlay-open .menu-toggle {
     z-index: 1015;
     background-color: var(--primary-color);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    top: 0.125rem; /* Align with top bar */
+    left: 0.125rem; /* Position at far left */
+    width: 32px; /* Slightly smaller to save space */
+    height: 32px; /* Slightly smaller to save space */
+    padding: 6px; /* Adjusted padding for better centering */
+    display: flex; /* Use flexbox for perfect centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
   }
 
   .sidebar {
@@ -193,7 +259,7 @@ body.overlay-open .menu-toggle {
     transition: transform 0.3s ease;
     position: fixed;
     height: 100vh;
-    z-index: 1001;
+    z-index: 1005; /* Ensure mobile sidebar is above top bar */
   }
 
   .sidebar.open {
@@ -223,6 +289,11 @@ body.overlay-open .menu-toggle {
     width: var(--sidebar-width);
     display: block;
   }
+  
+  /* Ensure hamburger menu is hidden on desktop */
+  .menu-toggle {
+    display: none !important;
+  }
 }
 
 /* Tablet Styles */
@@ -240,6 +311,11 @@ body.overlay-open .menu-toggle {
     margin-left: var(--sidebar-width-tablet);
     width: calc(100% - var(--sidebar-width-tablet));
   }
+  
+  /* Ensure hamburger menu is hidden on tablets */
+  .menu-toggle {
+    display: none !important;
+  }
 }
 
 /* Small Tablet and Large Mobile Styles */
@@ -255,8 +331,9 @@ body.overlay-open .menu-toggle {
     transform: translateX(0); /* Ensure sidebar is visible */
   }
 
+  /* Hide hamburger menu in this range */
   .menu-toggle {
-    display: none; /* Hide hamburger menu in this range */
+    display: none !important;
   }
 
   /* Add some top margin to page titles for better spacing */

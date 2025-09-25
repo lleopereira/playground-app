@@ -98,6 +98,44 @@
   }
 }
 
+/* Playground logout button */
+.playground-logout-button {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  min-width: 80px;
+  text-align: center;
+  z-index: 1010;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.playground-logout-button:hover {
+  background-color: #296529;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.playground-logout-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(44, 62, 80, 0.6);
+  transform: translateY(-1px);
+}
+
+.playground-logout-button:focus-visible {
+  outline: 2px solid #2c3e50;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px rgba(44, 62, 80, 0.4), 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
 /* Mobile specific styles */
 @media (max-width: 481px) {
   .page-content {
@@ -118,6 +156,16 @@
   .robot-image {
     max-height: 25vh;
     max-width: 250px;
+  }
+  
+  /* Mobile playground logout button */
+  .playground-logout-button {
+    top: 0.125rem;
+    right: 0.125rem;
+    padding: 0.15rem 0.35rem;
+    font-size: 0.65rem;
+    min-width: 50px;
+    border-radius: 1px;
   }
   
   .logout {

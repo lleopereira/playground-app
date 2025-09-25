@@ -42,31 +42,37 @@ export default function Layout({ children }) {
     setIsSidebarOpen(false);
   };
 
+  // Hide top bar on playground page
+  const isPlaygroundPage = location.pathname === '/playground';
+
   return (
     <div 
       className={`layout-container ${isSidebarOpen ? 'sidebar-open' : ''}`}
       id="main-layout"
       data-test-id="layout-container"
     >
-      <div 
-        className="top-bar"
-        id="top-navigation-bar"
-        data-test-id="top-bar"
-        role="banner"
-      >
-        <Breadcrumb tabIndex="2" />
-        <button 
-          className="logout-button" 
-          onClick={handleLogout}
-          data-test-id="logout-button"
-          id="logout-btn"
-          type="button"
-          aria-label="Logout from application"
-          tabIndex="3"
+      {/* Top bar - hidden on playground page */}
+      {!isPlaygroundPage && (
+        <div 
+          className="top-bar"
+          id="top-navigation-bar"
+          data-test-id="top-bar"
+          role="banner"
         >
-          Logout
-        </button>
-      </div>
+          <Breadcrumb tabIndex="2" />
+          <button 
+            className="logout-button" 
+            onClick={handleLogout}
+            data-test-id="logout-button"
+            id="logout-btn"
+            type="button"
+            aria-label="Logout from application"
+            tabIndex="3"
+          >
+            Logout
+          </button>
+        </div>
+      )}
 
       {/* Mobile Menu Button */}
       <button 
