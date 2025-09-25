@@ -45,7 +45,23 @@
   cursor: pointer;
   padding: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+  background-color: #296529;
+  transform: scale(1.05);
+}
+
+.menu-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(44, 62, 80, 0.6), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.menu-toggle:focus-visible {
+  outline: 2px solid #2c3e50;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(44, 62, 80, 0.4), 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
 .menu-toggle.hidden {
@@ -59,12 +75,16 @@ body.overlay-open .menu-toggle {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .menu-toggle svg {
   width: 24px;
   height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.menu-toggle:hover svg {
+  transform: scale(1.1);
 }
 
 .layout-container {
@@ -104,11 +124,25 @@ body.overlay-open .menu-toggle {
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
 }
 
 .logout-button:hover {
   background-color: #296529;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.logout-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(44, 62, 80, 0.6);
+  transform: translateY(-1px);
+}
+
+.logout-button:focus-visible {
+  outline: 2px solid #2c3e50;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px rgba(44, 62, 80, 0.4), 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Sidebar */
@@ -299,6 +333,30 @@ body.overlay-open .menu-toggle {
 .sidebar a {
   padding: 10px 15px;
   border-radius: 5px;
+}
+
+/* Focus styles for sidebar links */
+.sidebar a:focus {
+  outline: none;
+  background-color: rgba(41, 101, 41, 0.7);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.sidebar a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+  background-color: #296529;
+}
+
+.sidebar-title-link:focus {
+  outline: none;
+  background-color: rgba(41, 101, 41, 0.5);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.sidebar-title-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 /* Hover effects for all links */

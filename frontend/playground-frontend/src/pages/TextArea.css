@@ -122,7 +122,15 @@ textarea:required:valid {
 
 .submit-button:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 0 0 4px rgba(51, 190, 86, 0.6);
+  transform: translateY(-1px);
+}
+
+/* Enhanced focus-visible for keyboard users */
+.submit-button:focus-visible {
+  outline: 2px solid #33be56;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(51, 190, 86, 0.4), 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Responsive Design */
@@ -217,7 +225,4 @@ textarea:focus-visible {
   outline-offset: 2px;
 }
 
-.submit-button:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 2px;
-}
+/* Submit button focus-visible is defined above with better contrast */

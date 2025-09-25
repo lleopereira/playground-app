@@ -82,6 +82,17 @@ button:hover {
   background: #24471b;
 }
 
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(36, 71, 27, 0.5);
+}
+
+button:focus-visible {
+  outline: 2px solid #2c3e50;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(44, 62, 80, 0.4), 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
 .error-message {
   color: red;
   font-size: 14px;
