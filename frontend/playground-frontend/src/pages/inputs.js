@@ -140,7 +140,7 @@ export default function Inputs() {
             pattern="[0-9]*"
             title="Digite apenas números (máximo 11 dígitos)"
           />
-          <small style={{ color: '#666', fontSize: '12px' }}>
+          <small className="input-description">
             Apenas números • {formData.phone.length}/11 dígitos
           </small>
         </div>

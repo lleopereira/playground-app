@@ -64,14 +64,14 @@ export default function TextArea() {
             data-test-id="basic-textarea"
             value={formData.basicTextarea}
             onChange={handleTextareaChange}
-            placeholder="Digite seu texto aqui..."
+            placeholder="Ques ques se não ques fala..."
             aria-describedby="basic-textarea-description"
             rows="3"
             cols="50"
           />
           <small 
             id="basic-textarea-description" 
-            style={{ color: '#666', fontSize: '12px' }}
+            className="textarea-description"
           >
             Campo de texto livre para qualquer conteúdo
           </small>
@@ -96,7 +96,7 @@ export default function TextArea() {
             data-test-id="description-textarea"
             value={formData.descriptionTextarea}
             onChange={handleTextareaChange}
-            placeholder="Descreva o produto ou serviço..."
+            placeholder="Diz a lenda que na tapera há um portal que levas as pessoas para..."
             aria-describedby="description-textarea-description"
             maxLength="200"
             rows="4"
@@ -104,7 +104,7 @@ export default function TextArea() {
           />
           <small 
             id="description-textarea-description" 
-            style={{ color: '#666', fontSize: '12px' }}
+            className="textarea-description"
           >
             {formData.descriptionTextarea.length}/200 caracteres
           </small>
@@ -129,7 +129,7 @@ export default function TextArea() {
             data-test-id="comment-textarea"
             value={formData.commentTextarea}
             onChange={handleTextareaChange}
-            placeholder="Deixe seus comentários ou sugestões..."
+            placeholder="Só seguir toda vida reto..."
             aria-describedby="comment-textarea-description"
             rows="5"
             cols="50"
@@ -138,7 +138,7 @@ export default function TextArea() {
           />
           <small 
             id="comment-textarea-description" 
-            style={{ color: '#666', fontSize: '12px' }}
+            className="textarea-description"
           >
             Campo obrigatório para comentários
           </small>
@@ -163,7 +163,7 @@ export default function TextArea() {
             data-test-id="message-textarea"
             value={formData.messageTextarea}
             onChange={handleTextareaChange}
-            placeholder="Escreva uma mensagem especial..."
+            placeholder="Quer me enrolar me dá uma bala ixtepô..."
             aria-describedby="message-textarea-description"
             className="special-textarea"
             rows="6"
@@ -172,9 +172,9 @@ export default function TextArea() {
           />
           <small 
             id="message-textarea-description" 
-            style={{ color: '#666', fontSize: '12px' }}
+            className="textarea-description"
           >
-            Textarea com verificação ortográfica ativada
+            Area de texto com verificação ortográfica ativada
           </small>
         </div>
 

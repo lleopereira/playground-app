@@ -68,6 +68,14 @@ button[type="submit"]:hover {
   background-color: #1c491c;
 }
 
+/* Input description text styling */
+.input-description {
+  color: #666;
+  font-size: 12px;
+  margin-top: 0.25rem;
+  line-height: 1.3;
+}
+
 /* Specific input types styling */
 input[type="number"] {
   width: 300px;
