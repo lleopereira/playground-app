@@ -281,6 +281,117 @@ export default function FormSubmitOverlay({ formData, onClose }) {
               </span>
             </div>
           )}
+
+          {/* Checkbox fields */}
+          {formData.cypress !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="cypress-checkbox-data-item"
+              id="cypress-checkbox-item"
+            >
+              <span 
+                className="label"
+                data-test-id="cypress-checkbox-label"
+              >
+                Cypress:
+              </span>
+              <span 
+                className={`value checkbox-value ${formData.cypress ? 'selected' : 'unselected'}`}
+                data-test-id="submitted-cypress-checkbox"
+                id="submitted-cypress-checkbox-value"
+              >
+                {formData.cypress ? '✓ Selecionado' : '✗ Não selecionado'}
+              </span>
+            </div>
+          )}
+
+          {formData.robotFramework !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="robot-framework-checkbox-data-item"
+              id="robot-framework-checkbox-item"
+            >
+              <span 
+                className="label"
+                data-test-id="robot-framework-checkbox-label"
+              >
+                Robot Framework:
+              </span>
+              <span 
+                className={`value checkbox-value ${formData.robotFramework ? 'selected' : 'unselected'}`}
+                data-test-id="submitted-robot-framework-checkbox"
+                id="submitted-robot-framework-checkbox-value"
+              >
+                {formData.robotFramework ? '✓ Selecionado' : '✗ Não selecionado'}
+              </span>
+            </div>
+          )}
+
+          {formData.playwright !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="playwright-checkbox-data-item"
+              id="playwright-checkbox-item"
+            >
+              <span 
+                className="label"
+                data-test-id="playwright-checkbox-label"
+              >
+                Playwright:
+              </span>
+              <span 
+                className={`value checkbox-value ${formData.playwright ? 'selected' : 'unselected'}`}
+                data-test-id="submitted-playwright-checkbox"
+                id="submitted-playwright-checkbox-value"
+              >
+                {formData.playwright ? '✓ Selecionado' : '✗ Não selecionado'}
+              </span>
+            </div>
+          )}
+
+          {formData.selenium !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="selenium-checkbox-data-item"
+              id="selenium-checkbox-item"
+            >
+              <span 
+                className="label"
+                data-test-id="selenium-checkbox-label"
+              >
+                Selenium:
+              </span>
+              <span 
+                className={`value checkbox-value ${formData.selenium ? 'selected' : 'unselected'}`}
+                data-test-id="submitted-selenium-checkbox"
+                id="submitted-selenium-checkbox-value"
+              >
+                {formData.selenium ? '✓ Selecionado' : '✗ Não selecionado'}
+              </span>
+            </div>
+          )}
+
+          {formData.puppeteer !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="puppeteer-checkbox-data-item"
+              id="puppeteer-checkbox-item"
+            >
+              <span 
+                className="label"
+                data-test-id="puppeteer-checkbox-label"
+              >
+                Puppeteer:
+              </span>
+              <span 
+                className={`value checkbox-value ${formData.puppeteer ? 'selected' : 'unselected'}`}
+                data-test-id="submitted-puppeteer-checkbox"
+                id="submitted-puppeteer-checkbox-value"
+              >
+                {formData.puppeteer ? '✓ Selecionado' : '✗ Não selecionado'}
+              </span>
+            </div>
+          )}
         </div>
 
         <button 

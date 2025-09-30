@@ -98,12 +98,12 @@ textarea:required:valid {
 }
 
 .submit-button {
-  padding: 0.75rem 2rem;
+  padding: 0.6rem 1.2rem;  /* Much smaller padding */
   background: linear-gradient(135deg, #1e4e02 0%, #33be56 100%);
   color: white;
   border: none;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 0.95rem;      /* Smaller font */
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -176,7 +176,9 @@ textarea:required:valid {
   
   .submit-button {
     width: 100%;
-    padding: 1rem;
+    padding: 0.5rem 1rem !important;    /* Smaller padding for tablets */
+    font-size: 0.9rem !important;       /* Smaller font */
+    margin-top: 0.5rem !important;      /* Reduced margin */
   }
 }
 
@@ -204,6 +206,14 @@ textarea:required:valid {
   textarea {
     font-size: 0.9rem;
     padding: 0.5rem;
+  }
+  
+  .submit-button {
+    padding: 0.4rem 0.8rem !important;  /* Small padding for mobile */
+    font-size: 0.85rem !important;      /* Smaller font size */
+    margin-top: 0.4rem !important;      /* Minimal margin */
+    height: auto;
+    min-height: 2.2rem;      /* Smaller minimum height */
   }
 }
 

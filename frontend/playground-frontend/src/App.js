@@ -8,6 +8,7 @@ import UnderConstruction from "./pages/UnderConstruction";
 import Layout from "./components/Layout";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import CheckBoxes from "./pages/CheckBoxes";
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
           <Route path="/checkboxes" element={
             <ProtectedRoute>
               <Layout>
-                <UnderConstruction />
+                <CheckBoxes />
               </Layout>
             </ProtectedRoute>
           } />
