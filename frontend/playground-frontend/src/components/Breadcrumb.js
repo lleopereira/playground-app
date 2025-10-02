@@ -19,6 +19,8 @@ export default function Breadcrumb({ tabIndex }) {
         return 'Input Fields';
       case 'textarea':
         return 'Text Area';
+      case 'checkboxes':
+        return 'Checkboxes';
       default:
         return path;
     }
