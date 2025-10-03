@@ -42,3 +42,4 @@ docker-compose.override.yml
 
 # Documentation
 SETUP_GUIDE.md
+UPDATE_INSTRUCTIONS.md
