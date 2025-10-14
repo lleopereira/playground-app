@@ -9,6 +9,9 @@ import Layout from "./components/Layout";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CheckBoxes from "./pages/CheckBoxes";
+import RadioButtons from "./pages/RadioButtons";
+import Select from "./pages/Select";
+import Upload from './pages/Upload';
 
 function App() {
   return (
@@ -48,21 +51,21 @@ function App() {
           <Route path="/radios" element={
             <ProtectedRoute>
               <Layout>
-                <UnderConstruction />
+                <RadioButtons />
               </Layout>
             </ProtectedRoute>
           } />
           <Route path="/selects" element={
             <ProtectedRoute>
               <Layout>
-                <UnderConstruction />
+                <Select />
               </Layout>
             </ProtectedRoute>
           } />
           <Route path="/upload" element={
             <ProtectedRoute>
               <Layout>
-                <UnderConstruction />
+                <Upload />
               </Layout>
             </ProtectedRoute>
           } />

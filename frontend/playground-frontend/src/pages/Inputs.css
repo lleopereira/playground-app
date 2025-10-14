@@ -63,6 +63,9 @@ button[type="submit"],
   cursor: pointer;
   transition: background-color 0.2s;
   margin-top: 0.75rem;     /* Reduced margin */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button[type="submit"]:hover,
@@ -147,7 +150,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 
 @media (max-width: 1024px) and (min-width: 769px) {
   .input-form {
-    max-width: 90%;
+    /* max-width: 90%; */
     padding: 1.5rem;
   }
 

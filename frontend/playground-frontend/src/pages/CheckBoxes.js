@@ -5,7 +5,7 @@ import FormSubmitOverlay from '../components/FormSubmitOverlay';
 export default function Checkboxes() {
     const [selectedFrameworks, setSelectedFrameworks] = useState({
         cypress: false,
-        robotFramwork: false,
+        robotFramework: false,
         playwright: false,
         selenium: false,
         puppeteer: false

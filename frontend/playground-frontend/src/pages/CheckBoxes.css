@@ -35,6 +35,7 @@
     padding: 1.5rem;
     margin: 0;
     background-color: #fafafa;
+    transform: skew(-1.2deg)
 }
 
 .checkbox-legend {

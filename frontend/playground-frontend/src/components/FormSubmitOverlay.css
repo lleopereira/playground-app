@@ -38,6 +38,7 @@ body.overlay-open .menu-toggle {
   margin: 0 0 1.5rem 0;
   text-align: center;
   font-size: 1.5rem;
+  font-style: italic;
 }
 
 .data-list {
@@ -49,7 +50,7 @@ body.overlay-open .menu-toggle {
 .data-item {
   display: flex;
   padding: 0.5rem;
-  border-bottom: 1px solid #eee;
+  /* border-bottom: 1px solid #eee; */
 }
 
 .data-item:last-child {
@@ -61,6 +62,9 @@ body.overlay-open .menu-toggle {
   color: #666;
   width: 100px;
   flex-shrink: 0;
+  font-style: italic;
+  transform: skew(-10deg);
+  margin-right: 5px;
 }
 
 .value {
@@ -103,6 +107,7 @@ body.overlay-open .menu-toggle {
   color: #6c757d;
   background-color: #f8f9fa;
   border: 1px solid #e9ecef;
+  align-content: center;
 }
 
 .close-button {
@@ -121,8 +126,76 @@ body.overlay-open .menu-toggle {
   align-self: center;    /* Center the button */
 }
 
+.radio-value {
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 1.2em;
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  text-transform: capitalize;
+  text-align: center;
+  transform: skew(-10deg);
+}
+
+.radio-value:hover {
+  border: 1px solid #155724;
+}
+
+.select-value {
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  text-transform: capitalize;
+  text-align: center;
+  align-content: center;
+  transform: skew(-5deg);
+}
+
+.select-value.unselected {
+    color: #6c757d;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+}
+
+.multiselect-value {
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f1aeb5;
+  line-height: 1.4;
+  text-align: center;
+  align-content: center;
+  transform: skew(-5deg);
+}
+
+.multiselect-value.unselected {
+    color: #6c757d;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+}
+
 .close-button:hover {
   background: #14420e;
+}
+
+.upload-value {
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border: 1px solid #bee5eb;
+  word-break: break-all;
 }
 
 @keyframes fadeIn {

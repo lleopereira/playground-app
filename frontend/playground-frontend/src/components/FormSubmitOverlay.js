@@ -392,6 +392,119 @@ export default function FormSubmitOverlay({ formData, onClose }) {
               </span>
             </div>
           )}
+
+          {/* Radio Button fields */}
+          {formData.selectedLanguage !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="selected-language-data-item"
+              id="selected-language-item"
+            >
+              <span 
+                className="label"
+                data-test-id="selected-language-label"
+              >
+                Linguagem Selecionada:
+              </span>
+              <span 
+                className="value radio-value" 
+                data-test-id="submitted-selected-language"
+                id="submitted-selected-language-value"
+              >
+                {formData.selectedLanguage || 'Nenhuma selecionada'}
+              </span>
+            </div>
+          )}
+
+          {/* Select fields */}
+          {formData.selectedFramework !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="selected-framework-data-item"
+              id="selected-framework-item"
+            >
+              <span 
+                className="label"
+                data-test-id="selected-framework-label"
+              >
+                Framework Selecionado:
+              </span>
+              <span
+                className={`value select-value ${!formData.selectedFramework ? 'unselected' : ''}`}
+                data-test-id="submitted-selected-framework"
+                id="submitted-selected-framework-value"
+              >
+                {formData.selectedFramework || 'Nenhum selecionado'}
+              </span>
+            </div>
+          )}
+
+          {formData.selectedLanguages !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="selected-languages-data-item"
+              id="selected-languages-item"
+            >
+              <span 
+                className="label"
+                data-test-id="selected-languages-label"
+              >
+                Linguagens Selecionadas:
+              </span>
+              <span
+                className={`value multiselect-value ${formData.selectedLanguages ? formData.selectedLanguages.length === 0 ? 'unselected' : '' : 'unselected'}`}
+                data-test-id="submitted-selected-languages"
+                id="submitted-selected-languages-value"
+              >
+                {formData.selectedLanguages || 'Nenhuma selecionada'}
+              </span>
+            </div>
+          )}
+
+          {/* Upload fields */}
+          {formData.uploadedDocument !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="uploaded-document-data-item"
+              id="uploaded-document-item"
+            >
+              <span 
+                className="label"
+                data-test-id="uploaded-document-label"
+              >
+                Documento Enviado:
+              </span>
+              <span 
+                className="value upload-value" 
+                data-test-id="submitted-uploaded-document"
+                id="submitted-uploaded-document-value"
+              >
+                {formData.uploadedDocument || 'Nenhum documento enviado'}
+              </span>
+            </div>
+          )}
+
+          {formData.uploadedImage !== undefined && (
+            <div 
+              className="data-item"
+              data-test-id="uploaded-image-data-item"
+              id="uploaded-image-item"
+            >
+              <span 
+                className="label"
+                data-test-id="uploaded-image-label"
+              >
+                Imagem Enviada:
+              </span>
+              <span 
+                className="value upload-value" 
+                data-test-id="submitted-uploaded-image"
+                id="submitted-uploaded-image-value"
+              >
+                {formData.uploadedImage || 'Nenhuma imagem enviada'}
+              </span>
+            </div>
+          )}
         </div>
 
         <button 
