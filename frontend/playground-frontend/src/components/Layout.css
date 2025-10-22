@@ -377,7 +377,7 @@ body.overlay-open .menu-toggle {
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    gap: 0.125rem;
+    gap: 0.250rem;
     padding: 0.2rem 0.3rem;
     border-radius: 1px;
     min-height: auto;

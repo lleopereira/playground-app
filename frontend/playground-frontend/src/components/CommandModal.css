@@ -258,7 +258,9 @@
 }
 
 .modal-close-button:hover {
-  background: var(--primary-hover);
+  background: #1e2d3a;
+  transform: skew(-3.5deg);
+  transition: all 0.3s ease;
 }
 
 .modal-close-button:focus {
