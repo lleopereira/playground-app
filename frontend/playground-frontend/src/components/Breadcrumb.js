@@ -21,10 +21,29 @@ export default function Breadcrumb({ tabIndex }) {
         return 'Text Area';
       case 'checkboxes':
         return 'Checkboxes';
+      case 'radios':
+        return 'Radio Buttons';
+      case 'selects':
+        return 'Selects';
+      case 'upload':
+        return 'File Uploads';  
+      case 'ajuda':
+        return 'Ajuda';  
+      case 'browser-commands':
+        return 'Browser Commands';
+      case 'cli-commands':
+        return 'CLI Commands';
       default:
         return path;
     }
   };
+
+  const isHelpSubpage = (path) => {
+    return path === 'browser-commands' || path === 'cli-commands';
+  };
+
+  const currentPath = pathSegments[pathSegments.length - 1];
+  const showAjudaInBreadcrumb = isHelpSubpage(currentPath);
 
   return (
     <div 
@@ -43,6 +62,27 @@ export default function Breadcrumb({ tabIndex }) {
       >
         Playground
       </Link>
+
+      {showAjudaInBreadcrumb && (
+        <>
+          <span
+            className="separator"
+            data-test-id="breadcrumb-separator"
+            aria-hidden="true"
+        >
+          /
+          </span>
+          <Link
+            to="/ajuda"
+            className="breadcrumb-link"
+            data-test-id="breadcrumb-ajuda"
+            tabIndex={tabIndex}
+          >
+            Ajuda
+          </Link>
+        </>
+      )}
+
       {pathSegments.length > 0 && (
         <>
           <span 

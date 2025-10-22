@@ -12,6 +12,9 @@ import CheckBoxes from "./pages/CheckBoxes";
 import RadioButtons from "./pages/RadioButtons";
 import Select from "./pages/Select";
 import Upload from './pages/Upload';
+import BrowserCommands from './pages/BrowserCommands';
+import Ajuda from './pages/Ajuda';
+import CliCommands from './pages/CliCommands';
 
 function App() {
   return (
@@ -66,6 +69,27 @@ function App() {
             <ProtectedRoute>
               <Layout>
                 <Upload />
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/browser-commands" element={
+            <ProtectedRoute>
+              <Layout>
+                <BrowserCommands />
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/ajuda" element={
+            <ProtectedRoute>
+              <Layout>
+                <Ajuda />
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/cli-commands" element={
+            <ProtectedRoute>
+              <Layout>
+                <CliCommands />
               </Layout>
             </ProtectedRoute>
           } />

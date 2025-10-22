@@ -44,6 +44,9 @@ export default function Layout({ children }) {
 
   // Hide top bar on playground page
   const isPlaygroundPage = location.pathname === '/playground';
+  
+  // Check if we're on command pages (should have full-width breadcrumb)
+  const isCommandPage = ['/cli-commands', '/browser-commands'].includes(location.pathname);
 
   return (
     <div 
@@ -54,7 +57,7 @@ export default function Layout({ children }) {
       {/* Top bar - hidden on playground page */}
       {!isPlaygroundPage && (
         <div 
-          className="top-bar"
+          className={`top-bar ${isCommandPage ? 'full-width' : 'right-corner'}`}
           id="top-navigation-bar"
           data-test-id="top-bar"
           role="banner"
@@ -236,6 +239,34 @@ export default function Layout({ children }) {
             </Link>
           </li>
         </ul>
+        
+        {/* Help Section - Separated at bottom */}
+        <div className="sidebar-help-section">
+          <div className="help-separator"></div>
+          <ul className="sidebar-help-menu" role="menu">
+            <li role="menuitem">
+              <Link
+                to="/ajuda"
+                id="link-help"
+                data-test-id="nav-help"
+                className={location.pathname === '/ajuda' ? 'active help-link' : 'help-link'}
+                onClick={closeSidebar}
+                aria-current={location.pathname === '/ajuda' ? 'page' : undefined}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '0.5rem', verticalAlign: 'middle' }}>
+                  <path d="M12 2C12.7956 2 13.5587 2.31607 14.1213 2.87868C14.6839 3.44129 15 4.20435 15 5V7C15.5523 7 16 7.44772 16 8V16C16 16.5523 15.5523 17 15 17H9C8.44772 17 8 16.5523 8 16V8C8 7.44772 8.44772 7 9 7V5C9 4.20435 9.31607 3.44129 9.87868 2.87868C10.4413 2.31607 11.2044 2 12 2Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <path d="M10 7H14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <circle cx="12" cy="5" r="1" fill="currentColor"/>
+                  <path d="M11 10H13V14H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <circle cx="12" cy="20" r="2" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <path d="M10 18L14 22" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M14 18L10 22" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+                Help
+              </Link>
+            </li>
+          </ul>
+        </div>
       </nav>
 
       {/* Main Content */}

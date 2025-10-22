@@ -1,0 +1,487 @@
+/* Page Layout */
+.page-content {
+  max-width: none;
+  margin: 0;
+  padding: 1rem;
+  align-self: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+.page-title {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.page-description {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+/* Controls Section */
+.controls-section {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-container {
+  flex: 1;
+  min-width: 250px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  transform: skew(-10deg)
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(51, 190, 86, 0.1);
+}
+
+.filter-container {
+  min-width: 200px;
+}
+
+.category-filter {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  transform: skew(-10deg)
+}
+
+.category-filter:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(51, 190, 86, 0.1);
+}
+
+/* Section Titles */
+.section-title {
+  color: #333;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.commands-count {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 400;
+}
+
+/* Categories Overview */
+.categories-overview {
+  margin-bottom: 3rem;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.category-card {
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transform: skew(-3.5deg)
+}
+
+.category-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.category-header {
+  padding: 1rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category-title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.command-count {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.category-commands-preview {
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  flex: 1;
+  align-content: flex-start;
+}
+
+.command-preview {
+  background: #f8f9fa;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #666;
+  border: 1px solid #e9ecef;
+}
+
+.more-commands {
+  background: #e9ecef;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* Commands Section */
+.commands-section {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.commands-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 1rem;
+  width: 100%;
+}
+
+.command-card {
+  background: white;
+  border: 2px solid #e9ecef;
+  border-left: 4px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  min-height: 120px;
+  width: 100%;
+  box-sizing: border-box;
+  transform: skew(-3.5deg)
+}
+
+.command-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: #ddd;
+  background: linear-gradient(45deg, #51b428, transparent);
+}
+
+.command-card:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.command-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.command-name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  font-family: 'Courier New', monospace;
+  text-align: center;
+  word-break: break-word;
+  line-height: 1.2;
+}
+
+.command-category {
+  background: #666;
+  color: white;
+  padding: 0.2rem 0.4rem;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.command-description {
+  margin: 0 0 1rem 0;
+  color: #666;
+  line-height: 1.4;
+  font-size: 0.95rem;
+  flex: 1;
+}
+
+.command-syntax {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin-top: auto;
+}
+
+.command-syntax code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: #495057;
+  word-break: break-all;
+}
+
+/* No Results */
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+  font-style: italic;
+}
+
+.command-card::before {
+  content: attr(data-number);
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  background: rgba(0, 0, 0, 0.1);
+  color: #666;
+  font-size: 0.7rem;
+  font-weight: 500;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.command-card:hover::before {
+  background: rgba(0, 0, 0, 0.2);
+  color: #333;
+}
+
+/* Hide description and syntax in compact view */
+.command-description,
+.command-syntax {
+  display: none;
+}
+
+/* Responsive grid adjustments */
+@media (min-width: 1200px) {
+  .commands-grid {
+    grid-template-columns: repeat(5, 1fr) !important;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+  .commands-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .commands-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+  .page-content {
+    padding: 1rem;
+  }
+  
+  .page-title {
+    font-size: 2rem;
+  }
+  
+  .controls-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-container,
+  .filter-container {
+    min-width: auto;
+  }
+  
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .commands-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem;
+  }
+  
+  .command-card {
+    height: 100px;
+    min-height: 100px;
+    padding: 0.75rem;
+  }
+  
+  .command-name {
+    font-size: 0.9rem;
+  }
+  
+  .command-category {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.3rem;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .page-content {
+    max-width: 100%;
+    padding: 0.5rem;
+    margin: 0;
+    width: 100%;
+  }
+  
+  .page-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .page-description {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+  
+  .controls-section {
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-direction: column;
+  }
+  
+  .search-container,
+  .filter-container {
+    min-width: auto;
+  }
+  
+  .search-input,
+  .category-filter {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+  
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .category-card {
+    padding: 0.75rem;
+  }
+  
+  .category-title {
+    font-size: 1rem;
+  }
+  
+  .commands-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.5rem;
+  }
+  
+  .command-card {
+    height: 100px;
+    min-height: 100px;
+    padding: 0.5rem;
+  }
+  
+  .command-name {
+    font-size: 0.85rem;
+  }
+  
+  .command-category {
+    font-size: 0.65rem;
+    padding: 0.1rem 0.3rem;
+  }
+}
+
+@media (max-width: 481px) {
+  .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .commands-grid {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+  
+  .command-card {
+    padding: 0.5rem;
+    height: 80px;
+    min-height: 80px;
+  }
+  
+  .command-name {
+    font-size: 0.8rem;
+  }
+  
+  .command-category {
+    font-size: 0.55rem;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .command-card {
+    border-width: 3px;
+  }
+  
+  .command-card:hover {
+    border-width: 4px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .command-card,
+  .category-card {
+    transition: none;
+  }
+  
+  .command-card:hover,
+  .category-card:hover {
+    transform: none;
+  }
+}

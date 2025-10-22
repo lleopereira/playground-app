@@ -11,6 +11,7 @@
   margin-bottom: 2rem;
   color: var(--primary-color);
   font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin-top: 2rem;
 }
 
 .input-form {

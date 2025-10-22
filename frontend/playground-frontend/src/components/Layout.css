@@ -26,8 +26,12 @@
   flex: 1;
   margin-left: var(--sidebar-width);
   padding: 20px;
-  width: calc(100% - var(--sidebar-width));
+  padding-top: 80px; /* Account for top bar height */
+  width: auto;
   min-height: 100vh;
+  max-width: none;
+  overflow-x: auto;
+  box-sizing: border-box;
 }
 
 /* Hamburger Menu Button */
@@ -109,7 +113,6 @@ body.overlay-open .menu-toggle {
 .top-bar {
   position: fixed;
   top: 1rem;
-  right: 1rem;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -118,6 +121,19 @@ body.overlay-open .menu-toggle {
   padding: 0.5rem;
   border-radius: 4px;
   backdrop-filter: blur(5px);
+}
+
+/* Right corner positioning (default for most pages) */
+.top-bar.right-corner {
+  right: 1rem;
+  left: auto;
+  width: auto;
+}
+
+/* Full width positioning (for help-related pages) */
+.top-bar.full-width {
+  right: 1rem;
+  left: calc(var(--sidebar-width) + 1rem);
 }
 
 .logout-button {
@@ -167,6 +183,174 @@ body.overlay-open .menu-toggle {
   transition: transform 0.3s ease;
 }
 
+/* Help Section Styles */
+.sidebar-help-section {
+  margin-top: auto;
+  padding-top: 2rem;
+}
+
+.help-separator {
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #34495e 20%, #34495e 80%, transparent 100%);
+  margin-bottom: 1rem;
+  border-radius: 1px;
+}
+
+.sidebar-help-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.help-link {
+  color: #ecf0f1 !important;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  border: 1px solid transparent;
+  position: relative;
+}
+
+.help-link svg {
+  margin-right: 0.5rem;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.help-link:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white !important;
+  transform: translateX(5px) skew(-5deg);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.help-link:hover svg {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.help-link.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white !important;
+  font-weight: 600;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+}
+
+.help-link:focus {
+  outline: none;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.help-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Mobile adjustments for help section */
+@media (max-width: 480px) {
+  .sidebar-help-section {
+    padding-top: 1.5rem;
+  }
+  
+  .help-link {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .help-link svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Ensure sidebar has proper flexbox layout for help section positioning */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+/* Common link styles */
+.sidebar a, .sidebar-title-link {
+  color: #ecf0f1;
+  text-decoration: none;
+  display: block;
+  transition: all 0.3s ease;
+  transform-origin: left;
+  position: relative;
+  left: 0;
+  transform: skew(0);
+  padding-left: 15px;
+}
+
+/* Navigation links specific styles */
+.sidebar a {
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+/* Focus styles for sidebar links */
+.sidebar a:focus {
+  outline: none;
+  background-color: rgba(41, 101, 41, 0.7);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.sidebar a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+  background-color: #296529;
+}
+
+.sidebar-title-link:focus {
+  outline: none;
+  background-color: rgba(41, 101, 41, 0.5);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.sidebar-title-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Hover effects for all links */
+.sidebar a:hover, .sidebar-title-link:hover {
+  background-color: #296529;
+  transform: skew(-10deg);
+  padding-left: 25px;
+  color: white;
+}
+
+/* Active state for navigation links */
+.sidebar a.active {
+  background-color: #296529;
+  color: white;
+  font-weight: bold;
+  transform: skew(-10deg);
+  padding-left: 25px;
+}
+
 /* Mobile Responsive Adjustments (480px and below only) */
 @media (max-width: 480px) {
   .main-content {
@@ -184,8 +368,23 @@ body.overlay-open .menu-toggle {
     padding-top: 0.5rem;
   }
 
-  /* Mobile adjustments for top bar */
-  .top-bar {
+  /* Mobile adjustments for top bar - right corner style */
+  .top-bar.right-corner {
+    top: 0.125rem;
+    right: 0.125rem;
+    left: auto;
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.125rem;
+    padding: 0.2rem 0.3rem;
+    border-radius: 1px;
+    min-height: auto;
+  }
+  
+  /* Mobile adjustments for top bar - full width style */
+  .top-bar.full-width {
     top: 0.125rem;
     right: 0.125rem;
     left: 3.5rem; /* Leave space for hamburger menu */
@@ -210,8 +409,17 @@ body.overlay-open .menu-toggle {
     line-height: 1.2;
   }
 
-  /* Make breadcrumb more compact on mobile */
-  .top-bar .breadcrumb {
+  /* Breadcrumb styles for right corner on mobile */
+  .top-bar.right-corner .breadcrumb {
+    font-size: 0.65rem;
+    line-height: 1.2;
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
+  }
+  
+  /* Breadcrumb styles for full width on mobile */
+  .top-bar.full-width .breadcrumb {
     font-size: 0.65rem;
     line-height: 1.2;
     padding: 0;
@@ -290,6 +498,14 @@ body.overlay-open .menu-toggle {
     display: block;
   }
   
+  /* Both right corner and full-width stay in right corner on desktop */
+  .top-bar.right-corner,
+  .top-bar.full-width {
+    left: auto;
+    width: auto;
+    right: 1rem;
+  }
+  
   /* Ensure hamburger menu is hidden on desktop */
   .menu-toggle {
     display: none !important;
@@ -309,7 +525,20 @@ body.overlay-open .menu-toggle {
 
   .main-content {
     margin-left: var(--sidebar-width-tablet);
-    width: calc(100% - var(--sidebar-width-tablet));
+    width: auto;
+    max-width: none;
+    padding: 8px;
+    padding-top: 70px;
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
+  
+  /* Both right corner and full-width stay in right corner on tablet */
+  .top-bar.right-corner,
+  .top-bar.full-width {
+    left: auto;
+    width: auto;
+    right: 1rem;
   }
   
   /* Ensure hamburger menu is hidden on tablets */
@@ -336,10 +565,18 @@ body.overlay-open .menu-toggle {
     display: none !important;
   }
 
+  /* Both right corner and full-width stay in right corner on small tablet */
+  .top-bar.right-corner,
+  .top-bar.full-width {
+    left: auto;
+    width: auto;
+    right: 1rem;
+  }
+
   /* Add some top margin to page titles for better spacing */
   .main-content .page-title,
   .main-content h1[data-test-id="page-title-heading"] {
-    margin-top: 0.5rem !important;
+    margin-top: 1rem !important;
     padding-top: 0.25rem;
   }
 
@@ -349,7 +586,12 @@ body.overlay-open .menu-toggle {
 
   .main-content {
     margin-left: var(--sidebar-width-tablet);
-    width: calc(100% - var(--sidebar-width-tablet));
+    width: auto;
+    max-width: none;
+    padding: 8px;
+    padding-top: 70px;
+    box-sizing: border-box;
+    overflow-x: auto;
   }
 }
 
@@ -376,6 +618,99 @@ body.overlay-open .menu-toggle {
   visibility: hidden;
   transition: opacity 0.3s ease;
   z-index: -1;
+}
+
+/* Help Section Styles */
+.sidebar-help-section {
+  margin-top: auto;
+  padding-top: 2rem;
+}
+
+.help-separator {
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #34495e 20%, #34495e 80%, transparent 100%);
+  margin-bottom: 1rem;
+  border-radius: 1px;
+}
+
+.sidebar-help-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.help-link {
+  color: #ecf0f1 !important;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  border: 1px solid transparent;
+  position: relative;
+}
+
+.help-link svg {
+  margin-right: 0.5rem;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.help-link:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white !important;
+  transform: translateX(5px) skew(-5deg);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.help-link:hover svg {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.help-link.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white !important;
+  font-weight: 600;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+}
+
+.help-link:focus {
+  outline: none;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.help-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Mobile adjustments for help section */
+@media (max-width: 480px) {
+  .sidebar-help-section {
+    padding-top: 1.5rem;
+  }
+  
+  .help-link {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .help-link svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Ensure sidebar has proper flexbox layout for help section positioning */
+.sidebar {
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar h3 {
