@@ -15,6 +15,7 @@ import Upload from './pages/Upload';
 import BrowserCommands from './pages/BrowserCommands';
 import Ajuda from './pages/Ajuda';
 import CliCommands from './pages/CliCommands';
+import Tags from './pages/Tags';
 
 function App() {
   return (
@@ -96,7 +97,7 @@ function App() {
           <Route path="/tags" element={
             <ProtectedRoute>
               <Layout>
-                <UnderConstruction />
+                <Tags />
               </Layout>
             </ProtectedRoute>
           } />

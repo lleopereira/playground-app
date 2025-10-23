@@ -505,7 +505,42 @@ export default function FormSubmitOverlay({ formData, onClose }) {
               </span>
             </div>
           )}
+
+
         </div>
+
+        {/* Tags section - Special layout below the main data */}
+        {formData.tags !== undefined && (
+          <div className="tags-section">
+            <h3 
+              className="tags-section-title"
+              data-test-id="tags-section-title"
+            >
+              Tags Criadas
+            </h3>
+            <div 
+              className="tags-content" 
+              data-test-id="submitted-tags"
+              id="submitted-tags-value"
+            >
+              {formData.tags && formData.tags.length > 0 ? (
+                <ul className="tags-list">
+                  {formData.tags.map((tag, index) => (
+                    <li 
+                      key={index} 
+                      className="tag-list-item"
+                      data-test-id={`tag-list-item-${index}`}
+                    >
+                      {index + 1} - {tag}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="no-tags">Nenhuma tag criada</div>
+              )}
+            </div>
+          </div>
+        )}
 
         <button 
           onClick={onClose}

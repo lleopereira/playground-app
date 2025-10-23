@@ -25,12 +25,20 @@ body.overlay-open .menu-toggle {
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   width: 90%;
-  max-width: 500px;
-  max-height: 90vh; /* Prevent modal from being too tall */
+  max-width: 700px; /* Increased max width for tags */
+  max-height: 95vh; /* Allow more height */
   overflow-y: auto; /* Allow scrolling if content is too tall */
   animation: slideIn 0.3s ease;
-  display: flex;           /* Add flex display */
-  flex-direction: column;  /* Stack children vertically */
+  display: flex;
+  flex-direction: column;
+  
+  /* Dynamic width for tags - will expand up to content area */
+  min-width: 300px;
+}
+
+/* Special handling when tags are present */
+.overlay-content:has(.tags-section) {
+  max-width: min(90vw, 800px); /* Expand more when tags are present */
 }
 
 .overlay-title {
@@ -117,7 +125,7 @@ body.overlay-open .menu-toggle {
   width: auto;           /* Change from 100% to auto */
   min-width: 120px;      /* Set minimum width for good appearance */
   padding: 0.5rem 1rem;  /* Reduce padding: vertical horizontal */
-  background: #16530e;
+  background-color: #16530e;
   color: white;
   border: none;
   border-radius: 4px;
@@ -239,7 +247,8 @@ body.overlay-open .menu-toggle {
 @media (max-width: 767px) {
   .overlay-content {
     width: 95%;
-    max-height: 85vh; /* More room for mobile */
+    max-width: 95vw; /* Allow more width for tags on mobile */
+    max-height: 90vh; /* More room for mobile */
     padding: 1.5rem;
   }
 
@@ -272,7 +281,7 @@ body.overlay-open .menu-toggle {
   .overlay-content {
     width: 100%;
     max-width: none;
-    max-height: 80vh; /* More conservative height for small screens */
+    max-height: 85vh; /* More room for tags */
     padding: 1rem;
     margin: 0; /* Remove any margin */
     border-radius: 6px;
@@ -319,5 +328,330 @@ body.overlay-open .menu-toggle {
     margin-top: 1rem;
     padding: 0.9rem;
     font-size: 0.95rem;
+  }
+}
+
+/* Tags section - Special layout */
+.tags-section {
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.tags-section-title {
+  text-align: center;
+  color: var(--primary-color, #2c3e50);
+  font-size: 1.3rem;
+  font-style: italic;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+.tags-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.tags-list {
+  list-style: none;
+  padding: 0.75rem;
+  margin: 0;
+  background: #e8f4f0;
+  border: 1px solid #c3e6cb;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 600px;
+  transform: skew(-1.2deg);
+  
+  /* Dynamic height - will expand based on content */
+  max-height: calc(60vh - 200px); /* Dynamic based on viewport, minus space for title/button */
+  overflow-y: auto;
+  
+  /* Custom scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: #c3e6cb #e8f4f0;
+  
+  /* Container animation */
+  animation: tagsContainerFadeIn 0.5s ease-out;
+  
+  /* Container interaction effects */
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Subtle container hover effect */
+.tags-list:hover {
+  box-shadow: 0 4px 12px rgba(44, 62, 80, 0.1);
+  border-color: #a8d4b8;
+}
+
+/* Animation for tags container appearance */
+@keyframes tagsContainerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered animation for individual tags */
+.tag-list-item {
+  padding: 0.4rem 0.6rem;
+  margin: 0.25rem 0;
+  background: var(--primary-color, #2c3e50);
+  color: white;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: 500;
+  font-style: italic;
+  cursor: pointer;
+  
+  /* Enhanced transition for multiple properties */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Initial transform state */
+  transform: translateX(0) scale(1);
+  box-shadow: 0 2px 4px rgba(44, 62, 80, 0.1);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  
+  /* Animation properties */
+  animation: tagItemFadeIn 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+/* Each tag appears with a slight delay for staggered effect */
+.tag-list-item:nth-child(1) { animation-delay: 0.1s; }
+.tag-list-item:nth-child(2) { animation-delay: 0.15s; }
+.tag-list-item:nth-child(3) { animation-delay: 0.2s; }
+.tag-list-item:nth-child(4) { animation-delay: 0.25s; }
+.tag-list-item:nth-child(5) { animation-delay: 0.3s; }
+.tag-list-item:nth-child(6) { animation-delay: 0.35s; }
+.tag-list-item:nth-child(7) { animation-delay: 0.4s; }
+.tag-list-item:nth-child(8) { animation-delay: 0.45s; }
+.tag-list-item:nth-child(9) { animation-delay: 0.5s; }
+.tag-list-item:nth-child(10) { animation-delay: 0.55s; }
+
+/* For items beyond 10, use a general rule */
+.tag-list-item:nth-child(n+11) { animation-delay: 0.6s; }
+
+@keyframes tagItemFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Webkit scrollbar styling for better appearance */
+.tags-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tags-list::-webkit-scrollbar-track {
+  background: #e8f4f0;
+  border-radius: 4px;
+}
+
+.tags-list::-webkit-scrollbar-thumb {
+  background: #c3e6cb;
+  border-radius: 4px;
+  border: 1px solid #e8f4f0;
+}
+
+.tags-list::-webkit-scrollbar-thumb:hover {
+  background: #a8d4b8;
+}
+
+.tag-list-item {
+  padding: 0.4rem 0.6rem;
+  margin: 0.25rem 0;
+  background: #489148;
+  color: white;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: 500;
+  font-style: italic;
+  cursor: pointer;
+  
+  /* Enhanced transition for multiple properties */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Initial transform state */
+  transform: translateX(0) scale(1);
+  box-shadow: 0 2px 4px rgba(44, 62, 80, 0.1);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add subtle gradient overlay effect */
+.tag-list-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.tag-list-item:hover {
+  /* Color changes */
+  background: #296529;
+  color: #ffffff;
+  border-color: #073a07;
+  
+  /* Transform effects */
+  transform: translateX(5px) scale(1.02);
+  
+  /* Enhanced shadow */
+  box-shadow: 0 8px 16px rgba(44, 62, 80, 0.3);
+  
+  /* Font weight enhancement */
+  font-weight: 600;
+}
+
+/* Activate the shimmer effect on hover */
+.tag-list-item:hover::before {
+  left: 100%;
+}
+
+/* Active state for when clicked/pressed */
+.tag-list-item:active {
+  transform: translateX(3px) scale(0.98);
+  box-shadow: 0 4px 8px rgba(44, 62, 80, 0.2);
+  transition-duration: 0.1s;
+}
+
+.no-tags {
+  color: #6c757d;
+  font-style: italic;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  padding: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  
+  /* Subtle animation for empty state */
+  animation: noTagsPulse 2s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.no-tags:hover {
+  border-color: #c3e6cb;
+  background-color: #f1f8f4;
+  transform: scale(1.01);
+}
+
+/* Gentle pulse animation for no-tags state */
+@keyframes noTagsPulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.005);
+  }
+}
+
+/* Responsive tags styles */
+@media (max-width: 1024px) and (min-width: 768px) {
+  /* Tablet */
+  .tags-list {
+    max-height: calc(55vh - 180px);
+    max-width: 500px;
+  }
+  
+  .tags-section-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Small tablet/large mobile */
+  .tags-section {
+    margin-top: 1rem;
+  }
+  
+  .tags-section-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .tags-list {
+    max-height: calc(50vh - 150px);
+    padding: 0.5rem;
+    max-width: none; /* Full width on smaller screens */
+  }
+  
+  .tag-list-item {
+    font-size: 0.85em;
+    padding: 0.3rem 0.5rem;
+  }
+  
+  /* Reduce animation intensity on smaller screens */
+  .tag-list-item:hover {
+    transform: translateX(3px) scale(1.01); /* Less dramatic movement */
+  }
+  
+  .no-tags {
+    padding: 0.75rem;
+    max-width: none;
+  }
+}
+
+@media (max-width: 481px) {
+  /* Mobile */
+  .tags-section {
+    margin-top: 0.75rem;
+  }
+  
+  .tags-section-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .tags-list {
+    max-height: calc(45vh - 120px);
+    padding: 0.4rem;
+  }
+  
+  .tag-list-item {
+    font-size: 0.8em;
+    padding: 0.25rem 0.4rem;
+    margin: 0.2rem 0;
+  }
+  
+  /* Further reduce animation on mobile */
+  .tag-list-item:hover {
+    transform: translateX(2px) scale(1.005); /* Minimal movement for mobile */
+    box-shadow: 0 4px 8px rgba(44, 62, 80, 0.2); /* Lighter shadow */
+  }
+  
+  .no-tags {
+    font-size: 0.85em;
+    padding: 0.6rem;
+  }
+  
+  /* Adjust scrollbar for mobile */
+  .tags-list::-webkit-scrollbar {
+    width: 6px;
   }
 }
