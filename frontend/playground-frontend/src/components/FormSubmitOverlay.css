@@ -361,7 +361,7 @@ body.overlay-open .menu-toggle {
   border-radius: 6px;
   width: 100%;
   max-width: 600px;
-  transform: skew(-1.2deg);
+  transform: skew(-0.75deg);
   
   /* Dynamic height - will expand based on content */
   max-height: calc(60vh - 200px); /* Dynamic based on viewport, minus space for title/button */
@@ -441,11 +441,11 @@ body.overlay-open .menu-toggle {
 @keyframes tagItemFadeIn {
   from {
     opacity: 0;
-    transform: translateX(-20px) scale(0.9);
+    transform: translate3d(-20px, 0, 0) scale3d(0.9, 0.9, 1);
   }
   to {
     opacity: 1;
-    transform: translateX(0) scale(1);
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   }
 }
 
@@ -480,11 +480,19 @@ body.overlay-open .menu-toggle {
   font-style: italic;
   cursor: pointer;
   
+  /* Text rendering optimizations */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  
+  /* Hardware acceleration without distortion */
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform: translate3d(0, 0, 0); /* Use translate3d for better performance */
+  
   /* Enhanced transition for multiple properties */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   
-  /* Initial transform state */
-  transform: translateX(0) scale(1);
   box-shadow: 0 2px 4px rgba(44, 62, 80, 0.1);
   border: 2px solid transparent;
   position: relative;
@@ -514,8 +522,8 @@ body.overlay-open .menu-toggle {
   color: #ffffff;
   border-color: #073a07;
   
-  /* Transform effects */
-  transform: translateX(5px) scale(1.02);
+  /* Use translate3d for better performance and crisp rendering */
+  transform: translate3d(5px, 0, 0) scale3d(1.02, 1.02, 1);
   
   /* Enhanced shadow */
   box-shadow: 0 8px 16px rgba(44, 62, 80, 0.3);
@@ -531,7 +539,7 @@ body.overlay-open .menu-toggle {
 
 /* Active state for when clicked/pressed */
 .tag-list-item:active {
-  transform: translateX(3px) scale(0.98);
+  transform: translate3d(3px, 0, 0) scale3d(0.98, 0.98, 1);
   box-shadow: 0 4px 8px rgba(44, 62, 80, 0.2);
   transition-duration: 0.1s;
 }
@@ -604,11 +612,21 @@ body.overlay-open .menu-toggle {
   .tag-list-item {
     font-size: 0.85em;
     padding: 0.3rem 0.5rem;
+    
+    /* Fix blurry text on tablets */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
   
-  /* Reduce animation intensity on smaller screens */
+  /* Remove problematic transforms on tablets - use simpler effects */
   .tag-list-item:hover {
-    transform: translateX(3px) scale(1.01); /* Less dramatic movement */
+    background: #2d5a2d; /* Simple color change instead of transform */
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.2);
+    border-color: #4a90a4;
+    /* Remove transform to prevent blurriness */
   }
   
   .no-tags {
@@ -637,12 +655,48 @@ body.overlay-open .menu-toggle {
     font-size: 0.8em;
     padding: 0.25rem 0.4rem;
     margin: 0.2rem 0;
+    
+    /* AGGRESSIVE text rendering fixes for mobile */
+    -webkit-font-smoothing: subpixel-antialiased !important;
+    -moz-osx-font-smoothing: auto !important;
+    text-rendering: optimizeSpeed !important;
+    font-smooth: never !important;
+    
+    /* COMPLETELY remove all transforms and 3D context */
+    transform: none !important;
+    backface-visibility: visible !important;
+    perspective: none !important;
+    will-change: auto !important;
+    
+    /* Disable animations on mobile */
+    animation: none !important;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
+    
+    /* Force immediate opacity */
+    opacity: 1 !important;
   }
   
-  /* Further reduce animation on mobile */
+  /* Disable staggered animations on mobile */
+  .tag-list-item:nth-child(n) {
+    animation-delay: 0s !important;
+    animation: none !important;
+  }
+  
+  /* Mobile hover - ZERO transforms, only colors */
   .tag-list-item:hover {
-    transform: translateX(2px) scale(1.005); /* Minimal movement for mobile */
-    box-shadow: 0 4px 8px rgba(44, 62, 80, 0.2); /* Lighter shadow */
+    background: #2d5a2d !important;
+    box-shadow: 0 1px 4px rgba(44, 62, 80, 0.15) !important;
+    border-color: #4a90a4 !important;
+    
+    /* Explicitly prevent any transforms */
+    transform: none !important;
+    scale: none !important;
+  }
+  
+  /* Disable active state transforms on mobile */
+  .tag-list-item:active {
+    transform: none !important;
+    background: #1f3f1f !important;
   }
   
   .no-tags {
@@ -653,5 +707,85 @@ body.overlay-open .menu-toggle {
   /* Adjust scrollbar for mobile */
   .tags-list::-webkit-scrollbar {
     width: 6px;
+  }
+}
+
+/* Specific fixes for high DPI displays and retina screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .tag-list-item {
+    /* Force crisp text rendering on high DPI displays */
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-smooth: always;
+    text-rendering: geometricPrecision;
+    
+    /* Ensure transforms don't cause blur */
+    will-change: transform;
+    transform-style: preserve-3d;
+  }
+  
+  /* Reduce or remove scaling on retina displays to prevent blur */
+  .tag-list-item:hover {
+    transform: translate3d(5px, 0, 0) scale3d(1.01, 1.01, 1) !important;
+  }
+  
+  @media (max-width: 767px) {
+    .tag-list-item:hover {
+      transform: translate3d(0, 0, 0) !important; /* No transform on mobile retina */
+    }
+  }
+}
+
+/* Force GPU acceleration for smooth animations - DESKTOP ONLY */
+@media (min-width: 769px) {
+  .tag-list-item,
+  .tags-list {
+    will-change: transform, opacity;
+    transform-style: preserve-3d;
+  }
+}
+
+/* MOBILE BLUR FIX - Override everything */
+@media (max-width: 480px) {
+  /* Container fixes */
+  .tags-list {
+    -webkit-overflow-scrolling: touch;
+    transform: none !important;
+  }
+  
+  /* Tag items - complete override */
+  .tag-list-item {
+    /* Text rendering - most compatible settings */
+    -webkit-font-smoothing: none !important;
+    -moz-osx-font-smoothing: unset !important;
+    text-rendering: auto !important;
+    
+    /* Remove ALL 3D rendering */
+    transform: none !important;
+    transform-style: flat !important;
+    backface-visibility: visible !important;
+    perspective: none !important;
+    will-change: auto !important;
+    
+    /* No animations whatsoever */
+    animation: none !important;
+    animation-delay: 0s !important;
+    animation-duration: 0s !important;
+    
+    /* Simple transitions only */
+    transition: background-color 0.15s linear !important;
+    
+    /* Force full opacity */
+    opacity: 1 !important;
+    
+    /* Ensure no floating point positions */
+    position: static;
+  }
+  
+  .tag-list-item:hover,
+  .tag-list-item:active,
+  .tag-list-item:focus {
+    transform: none !important;
+    scale: none !important;
+    translate: none !important;
   }
 }
