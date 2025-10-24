@@ -1,0 +1,857 @@
+/* DatePicker Page Specific: Ultra-high specificity override for Layout main-content */
+html body div.layout-container main.main-content[data-page="datepicker"] {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  min-height: auto !important; /* Remove min-height that causes centering */
+  display: block !important; /* Override any flex properties */
+  align-items: unset !important;
+  justify-content: unset !important;
+}
+
+/* Override the layout-container flexbox behavior for DatePicker */
+html body div.layout-container:has(main[data-page="datepicker"]) {
+  align-items: flex-start !important; /* Align content to top */
+}
+
+/* Fallback for browsers without :has() support */
+html body div.layout-container[data-datepicker-page="true"] {
+  align-items: flex-start !important;
+}
+
+/* Additional high-specificity overrides for all device ranges */
+html body div#main-layout main#main-content[data-page="datepicker"] {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  min-height: auto !important;
+  display: block !important;
+}
+
+/* Ultra-specific media query overrides matching Layout.css exactly */
+@media (min-width: 769px) and (max-width: 1024px) {
+  html body div.layout-container main.main-content[data-page="datepicker"] {
+    padding-top: 0 !important;
+    margin-left: var(--sidebar-width-tablet);
+    width: auto;
+    max-width: none;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  html body div.layout-container main.main-content[data-page="datepicker"] {
+    padding-top: 0 !important;
+    margin-left: var(--sidebar-width-tablet);
+    width: auto;
+    max-width: none;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  html body div.layout-container main.main-content[data-page="datepicker"] {
+    padding-top: 0 !important;
+    margin-left: 0;
+    width: 100%;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    box-sizing: border-box;
+  }
+}
+
+/* Base Styles - Following existing pattern from other pages */
+.page-content {
+  padding: clamp(1rem, 4vw, 2rem);
+  max-width: 1536px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* DatePicker Page Specific: Override Layout main-content ONLY when this CSS loads */
+body:has(#datepicker-page) .main-content,
+.main-content:has(#datepicker-page) {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* If :has() not supported, use attribute-based targeting */
+.main-content[data-page="datepicker"] {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* DatePicker specific page content adjustments - FIX THE FLEXBOX CENTERING! */
+#datepicker-page.page-content {
+  padding-top: 4.5rem;
+  margin-top: 0;
+  /* Override the flexbox centering that's causing middle positioning */
+  justify-content: flex-start !important; /* Keep content at top vertically */
+  align-items: center !important; /* Center content horizontally */
+  min-height: 100vh !important; /* Ensure enough height for calendar */
+  height: auto !important; /* Remove fixed height */
+  overflow: visible !important; /* Ensure calendar can be seen */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #datepicker-page.page-content {
+    padding: 3rem 1rem 0.5rem 1rem; /* Add top padding for tablets */
+  }
+  
+  /* Ultra-high specificity override for tablet resolutions like 540x720 */
+  html body div.layout-container main.main-content[data-page="datepicker"] #datepicker-page.page-content {
+    padding-top: 4rem !important; /* Force tablet top padding */
+  }
+}
+
+@media (max-width: 481px) {
+  #datepicker-page.page-content {
+    padding: 4rem 0.75rem 0.5rem 0.75rem !important; /* Add more top padding for mobile to clear menu/breadcrumb */
+  }
+  
+  /* Ultra-high specificity override for mobile - like we did for tablets */
+  html body div.layout-container main.main-content[data-page="datepicker"] #datepicker-page.page-content {
+    padding-top: 4rem !important; /* Force mobile top padding */
+  }
+}
+
+#page-title {
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin-top: 2rem;
+}
+
+/* Form Container Styles */
+.datepicker-form {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: rgb(241, 239, 239);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+/* Input Group Styles */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.input-label {
+  font-style: italic;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0.5rem;
+  text-align: center; /* Center the "Date picker" label text */
+}
+
+/* Custom Date Input Container */
+.datepicker-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.datepicker-input {
+  flex: 1;
+  padding: 0.75rem;
+  padding-right: 3rem; /* Space for calendar icon */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  text-align: center; /* Center the date text inside the input field */
+}
+
+.datepicker-input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1);
+}
+
+.calendar-icon-button {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 2px;
+  transition: background-color 0.2s;
+}
+
+.calendar-icon-button:hover {
+  background-color: rgba(44, 62, 80, 0.1);
+}
+
+/* Calendar Modal Styles */
+.calendar-modal {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  margin-top: 0.5rem;
+  padding: 1rem;
+  animation: calendarSlideDown 0.2s ease-out;
+}
+
+/* Ensure calendar modal is always visible and properly positioned */
+.input-group.calendar-open .calendar-modal {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 9999 !important; /* Higher z-index to ensure visibility */
+  max-height: 600px; /* Limit height to prevent overflow */
+  overflow-y: auto; /* Allow scrolling if needed */
+}
+
+@keyframes calendarSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Calendar Header Styles */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #eee;
+}
+
+/* Ensure all text in calendar header is visible */
+.calendar-header * {
+  color: inherit;
+}
+
+/* Month Navigation */
+.month-navigation {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-button {
+  background: #296529; /* Same color as Enviar button */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.2s;
+}
+
+.nav-button:hover {
+  background: #1c491c; /* Same hover color as Enviar button */
+}
+
+/* Month Selector */
+.month-selector {
+  position: relative;
+}
+
+.month-button {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: #000000; /* Make text black for visibility */
+  transition: all 0.2s;
+  min-width: 120px;
+  justify-content: space-between;
+}
+
+.month-button:hover {
+  background: #e9ecef;
+  border-color: var(--primary-color);
+  color: #000000; /* Ensure text stays black on hover */
+}
+
+.dropdown-arrow {
+  font-size: 0.8rem;
+  color: #000000; /* Make dropdown arrow black too */
+  transition: transform 0.2s;
+}
+
+.month-button[aria-expanded="true"] .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* Month Dropdown */
+.month-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+  margin-top: 0.25rem;
+  max-height: 200px;
+  overflow-y: auto;
+  animation: dropdownFadeIn 0.15s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.month-option {
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: white;
+  color: #000000; /* Make dropdown option text black */
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.month-option:hover {
+  background: #c9edc1;
+  color: #000000; /* Keep text black on hover */
+}
+
+.month-option.selected {
+  background: #1c491c;
+  color: white;
+}
+
+/* Year Navigation */
+.year-navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.year-nav-button {
+  background: #296529; /* Same color as Enviar button */
+  color: white;
+  border: none;
+  border-radius: 2px;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.2s;
+}
+
+.year-nav-button:hover {
+  background: #1c491c; /* Same hover color as Enviar button */
+}
+
+.current-year {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--primary-color, #2c3e50);
+  min-width: 4rem;
+  text-align: center;
+}
+
+/* Calendar Grid */
+.calendar-grid {
+  width: 100%;
+}
+
+.calendar-days-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.day-header {
+  text-align: center;
+  font-weight: 600;
+  color: #6c757d;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  border: none;
+  background: #569559;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.2s;
+  position: relative;
+  min-height: 2.5rem; /* Ensure minimum height for visibility */
+  font-size: 1rem;
+}
+
+.calendar-day:not(.empty):hover {
+  background: #acddb4;
+  color: var(--primary-color, #2c3e50);
+}
+
+.calendar-day.selected {
+  background: var(--primary-color, #2c3e50);
+  color: white;
+  font-weight: 600;
+}
+
+.calendar-day.today {
+  background: #4caf50;
+  color: white;
+  font-weight: 600;
+}
+
+.calendar-day.selected.today {
+  background: var(--primary-color, #2c3e50);
+  box-shadow: 0 0 0 2px #4caf50;
+}
+
+.calendar-day.empty {
+  cursor: default;
+  background: transparent;
+}
+
+/* Submit Button - Following existing pattern */
+button[type="submit"],
+.submit-button {
+  background-color: #296529;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 0.75rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button[type="submit"]:hover,
+.submit-button:hover {
+  background-color: #1c491c;
+}
+
+/* Desktop Calendar Optimization - Make it more compact */
+@media (min-width: 1025px) {
+  .calendar-modal {
+    padding: 0.75rem; /* Reduce modal padding */
+    max-width: 605px; /* Limit maximum width */
+    margin: 0 auto; /* Center the modal */
+  }
+  
+  .calendar-header {
+    margin-bottom: 0.75rem; /* Reduce header margin */
+    padding-bottom: 0.5rem; /* Reduce header padding */
+  }
+  
+  .month-button {
+    min-width: 100px; /* Smaller month button */
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .nav-button {
+    width: 1.8rem; /* Slightly smaller nav buttons */
+    height: 1.8rem;
+    font-size: 1rem;
+  }
+  
+  .year-nav-button {
+    width: 1.3rem; /* Smaller year buttons */
+    height: 1.3rem;
+    font-size: 0.75rem;
+  }
+  
+  .current-year {
+    font-size: 1rem; /* Smaller year text */
+    min-width: 3.5rem;
+  }
+  
+  .day-header {
+    padding: 0.3rem; /* Smaller day header padding */
+    font-size: 0.8rem;
+  }
+  
+  .calendar-day {
+    min-height: 2rem; /* Smaller day buttons */
+    font-size: 0.9rem;
+  }
+  
+  .calendar-days-header {
+    margin-bottom: 0.3rem; /* Reduce spacing */
+  }
+  
+  .calendar-days {
+    gap: 2px; /* Slightly larger gap for better click targets */
+  }
+}
+
+/* Responsive Design - Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .datepicker-form {
+    padding: 1.5rem;
+  }
+  
+  .calendar-modal {
+    padding: 0.75rem;
+  }
+  
+  .month-button {
+    min-width: 100px;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Responsive Design - Small Tablet */
+@media (max-width: 768px) {
+  .page-content {
+    padding: 0.5rem 1rem; /* Minimal top padding */
+  }
+
+  /* Target the specific datepicker page */
+  #datepicker-page {
+    padding-top: 0 !important; /* Force no top padding */
+  }
+
+  .datepicker-form {
+    padding: 1rem;
+    margin-top: 0; /* Ensure no margin on form */
+  }
+
+  #page-title {
+    margin-top: 0 !important; /* Force no top margin */
+    margin-bottom: 1rem; /* Minimal bottom margin */
+    font-size: 1.8rem; /* Slightly smaller for tablets */
+    padding-top: 0 !important; /* Force no top padding */
+  }
+
+  /* Adjust input group positioning for tablet */
+  .input-group {
+    position: relative;
+    z-index: 10;
+  }
+
+  .calendar-modal {
+    /* Position inline with input on tablets */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    max-width: none;
+  }
+
+  .calendar-header {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+
+  .month-navigation {
+    justify-content: center;
+  }
+
+  .year-navigation {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .current-year {
+    order: 1;
+    margin: 0 0.25rem; /* Add slight margin for better spacing */
+  }
+
+  .calendar-day {
+    font-size: 0.9rem;
+  }
+
+  button[type="submit"],
+  .submit-button {
+    width: 30%;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    align-self: center;
+  }
+}
+
+/* Specific fix for 540x720 and similar compact tablet resolutions */
+@media (max-width: 600px) and (min-width: 481px) {
+  .calendar-modal {
+    padding: 0.2rem; /* Very small modal padding */
+    margin-top: 0.25rem;
+    /* Fit within the 325px content area (minus input padding) */
+    width: 285px; /* Fit within available space */
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .calendar-header {
+    gap: 0.2rem; /* Smaller header spacing */
+    margin-bottom: 0.4rem;
+  }
+  
+  .month-button {
+    min-width: 55px; /* Smaller month button */
+    padding: 0.15rem 0.3rem;
+    font-size: 0.75rem;
+  }
+  
+  .nav-button {
+    width: 1.1rem; /* Smaller navigation buttons */
+    height: 1.1rem;
+    font-size: 0.8rem;
+  }
+  
+  .year-nav-button {
+    width: 0.9rem;
+    height: 0.9rem;
+    font-size: 0.55rem;
+  }
+  
+  .year-navigation {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  
+  .current-year {
+    font-size: 0.85rem; /* Smaller year text */
+    min-width: 2.2rem;
+    margin: 0 0.15rem; /* Add slight margin for better spacing in compact view */
+  }
+  
+  .day-header {
+    padding: 0.15rem; /* Smaller day headers */
+    font-size: 0.7rem;
+  }
+  
+  .calendar-day {
+    min-height: 1.8rem; /* Compact day buttons */
+    font-size: 0.8rem;
+    border-radius: 2px;
+  }
+  
+  .calendar-days {
+    gap: 1px; /* Minimal gap for space efficiency */
+  }
+  
+  .calendar-days-header {
+    gap: 1px; /* Minimal gap in header */
+    margin-bottom: 0.2rem;
+  }
+}
+
+/* Responsive Design - Mobile */
+@media (max-width: 481px) {
+  .page-content {
+    padding: 0.5rem 0.75rem; /* Minimal top padding */
+  }
+
+  /* Target the specific datepicker page */
+  #datepicker-page {
+    padding-top: 0 !important; /* Force no top padding */
+  }
+
+  .datepicker-form {
+    padding: 0.75rem;
+    margin-top: 0; /* Ensure no margin on form */
+  }
+
+  #page-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    margin-top: 0 !important; /* Force no top margin */
+    padding-top: 0 !important; /* Force no top padding */
+  }
+
+  /* Add overlay backdrop for mobile calendar */
+  .input-group {
+    position: relative;
+  }
+
+  .input-group.calendar-open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+
+  .calendar-modal {
+    /* Position at top of screen on mobile */
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    z-index: 1001;
+    padding: 0.5rem;
+    margin-top: 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  }
+
+  .calendar-header {
+    gap: 0.5rem;
+  }
+
+  .month-button {
+    min-width: 90px;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .nav-button {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 1rem;
+  }
+
+  .year-nav-button {
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: 0.7rem;
+  }
+
+  .year-navigation {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .current-year {
+    font-size: 1rem;
+    min-width: 3rem;
+    margin: 0 0.25rem; /* Add slight margin for better spacing */
+  }
+
+  .day-header {
+    padding: 0.3rem;
+    font-size: 0.75rem;
+  }
+
+  .calendar-day {
+    font-size: 0.8rem;
+    min-height: 2rem;
+  }
+
+  .month-dropdown {
+    max-height: 150px;
+  }
+
+  .month-option {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .submit-button,
+  button[type="submit"] {
+    width: 30%;
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.85rem !important;
+    margin-top: 0.4rem !important;
+    height: auto;
+    min-height: 2.2rem;
+    align-self: center;
+  }
+}
+
+/* Focus states for accessibility */
+.datepicker-input:focus,
+.month-button:focus,
+.nav-button:focus,
+.year-nav-button:focus,
+.calendar-day:focus {
+  outline: 2px solid var(--primary-color, #2c3e50);
+  outline-offset: 2px;
+}
+
+.month-option:focus {
+  background: #e9ecef;
+  outline: none;
+  box-shadow: none;
+  margin-bottom: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .calendar-modal {
+    border: 2px solid;
+  }
+  
+  .calendar-day.selected,
+  .calendar-day.today {
+    border: 2px solid;
+  }
+}

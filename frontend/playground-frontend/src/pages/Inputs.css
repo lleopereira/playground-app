@@ -1,3 +1,117 @@
+/* Inputs Page Specific: Ultra-high specificity override for Layout main-content */
+html body div.layout-container main.main-content[data-page="inputs"] {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  min-height: auto !important; /* Remove min-height that causes centering */
+  display: block !important; /* Override any flex properties */
+  align-items: unset !important;
+  justify-content: unset !important;
+}
+
+/* Override the layout-container flexbox behavior for Inputs */
+html body div.layout-container:has(main[data-page="inputs"]) {
+  align-items: flex-start !important; /* Align content to top */
+}
+
+/* Fallback for browsers without :has() support */
+html body div.layout-container[data-inputs-page="true"] {
+  align-items: flex-start !important;
+}
+
+/* Additional high-specificity overrides for all device ranges */
+html body div#main-layout main#main-content[data-page="inputs"] {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  min-height: auto !important;
+  display: block !important;
+}
+
+/* Ultra-specific media query overrides matching Layout.css exactly */
+@media (min-width: 769px) and (max-width: 1024px) {
+  html body div.layout-container main.main-content[data-page="inputs"] {
+    padding-top: 0 !important;
+    margin-left: var(--sidebar-width-tablet);
+    width: auto;
+    max-width: none;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  html body div.layout-container main.main-content[data-page="inputs"] {
+    padding-top: 0 !important;
+    margin-left: var(--sidebar-width-tablet);
+    width: auto;
+    max-width: none;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  html body div.layout-container main.main-content[data-page="inputs"] {
+    padding-top: 0 !important;
+    margin-left: 0;
+    width: 100%;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    box-sizing: border-box;
+  }
+}
+
+/* Inputs Page Specific: Override Layout main-content ONLY when this CSS loads */
+body:has(#inputs-page) .main-content,
+.main-content:has(#inputs-page) {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* If :has() not supported, use attribute-based targeting */
+.main-content[data-page="inputs"] {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Inputs specific page content adjustments - FIX THE FLEXBOX CENTERING! */
+#inputs-page.page-content {
+  padding-top: 4.5rem; /* 📍 ADJUSTABLE HEIGHT: Change this value to move content up/down */
+  margin-top: 0;
+  /* Override the flexbox centering that's causing middle positioning */
+  justify-content: flex-start !important; /* Keep content at top vertically */
+  align-items: center !important; /* Center content horizontally */
+  min-height: 100vh !important; /* Ensure enough height */
+  height: auto !important; /* Remove fixed height */
+  overflow: visible !important; /* Ensure content can be seen */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #inputs-page.page-content {
+    padding: 3rem 1rem 0.5rem 1rem; /* 📍 TABLET HEIGHT: Adjust first value (3rem) to change tablet positioning */
+  }
+  
+  /* Ultra-high specificity override for tablet resolutions */
+  html body div.layout-container main.main-content[data-page="inputs"] #inputs-page.page-content {
+    padding-top: 4rem !important; /* 📍 TABLET OVERRIDE: Adjust to change tablet top padding */
+  }
+}
+
+@media (max-width: 481px) {
+  #inputs-page.page-content {
+    padding: 4rem 0.75rem 0.5rem 0.75rem !important; /* 📍 MOBILE HEIGHT: Adjust first value (4rem) for mobile positioning */
+  }
+  
+  /* Ultra-high specificity override for mobile */
+  html body div.layout-container main.main-content[data-page="inputs"] #inputs-page.page-content {
+    padding-top: 4rem !important; /* 📍 MOBILE OVERRIDE: Adjust to change mobile top padding */
+  }
+}
+
 .page-content {
   padding: clamp(1rem, 4vw, 2rem);
   max-width: 1536px;
@@ -37,6 +151,7 @@
   font-style: italic;
   font-weight: 500;
   color: #333;
+  text-align: left;
 }
 
 .input-group input {

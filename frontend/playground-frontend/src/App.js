@@ -16,6 +16,7 @@ import BrowserCommands from './pages/BrowserCommands';
 import Ajuda from './pages/Ajuda';
 import CliCommands from './pages/CliCommands';
 import Tags from './pages/Tags';
+import DatePicker from './pages/DatePicker';
 
 function App() {
   return (
@@ -104,7 +105,7 @@ function App() {
           <Route path="/datepicker" element={
             <ProtectedRoute>
               <Layout>
-                <UnderConstruction />
+                <DatePicker />
               </Layout>
             </ProtectedRoute>
           } />

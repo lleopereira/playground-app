@@ -506,8 +506,28 @@ export default function FormSubmitOverlay({ formData, onClose }) {
             </div>
           )}
 
-
         </div>
+
+        {/* Date section - Special layout below the main data */}
+        {formData.selectedDate !== undefined && (
+          <div className="date-section">
+            <h3 
+              className="date-section-title"
+              data-test-id="date-section-title"
+            >
+              Data:
+            </h3>
+            <div 
+              className="date-content" 
+              data-test-id="submitted-date"
+              id="submitted-date-value"
+            >
+              <div className="selected-date-display">
+                {formData.selectedDate || 'Nenhuma data selecionada'}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Tags section - Special layout below the main data */}
         {formData.tags !== undefined && (

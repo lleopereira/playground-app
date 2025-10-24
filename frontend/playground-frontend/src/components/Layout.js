@@ -47,12 +47,28 @@ export default function Layout({ children }) {
   
   // Check if we're on command pages (should have full-width breadcrumb)
   const isCommandPage = ['/cli-commands', '/browser-commands'].includes(location.pathname);
+  
+  // Check if we're on DatePicker page (for special layout handling)
+  const isDatePickerPage = location.pathname === '/datepicker';
+  
+  // Check if we're on Tags page (for special layout handling)
+  const isTagsPage = location.pathname === '/tags';
+  
+  // Check if we're on Inputs page (for special layout handling)
+  const isInputsPage = location.pathname === '/inputs';
+  
+  // Check if we're on TextArea page (for special layout handling)
+  const isTextAreaPage = location.pathname === '/textarea';
 
   return (
     <div 
       className={`layout-container ${isSidebarOpen ? 'sidebar-open' : ''}`}
       id="main-layout"
       data-test-id="layout-container"
+      data-datepicker-page={isDatePickerPage ? 'true' : undefined}
+      data-tags-page={isTagsPage ? 'true' : undefined}
+      data-inputs-page={isInputsPage ? 'true' : undefined}
+      data-textarea-page={isTextAreaPage ? 'true' : undefined}
     >
       {/* Top bar - hidden on playground page */}
       {!isPlaygroundPage && (
@@ -274,6 +290,7 @@ export default function Layout({ children }) {
         className="main-content"
         id="main-content"
         data-test-id="page-content"
+        data-page={isDatePickerPage ? 'datepicker' : (isTagsPage ? 'tags' : (isInputsPage ? 'inputs' : (isTextAreaPage ? 'textarea' : undefined)))}
         role="main"
         aria-live="polite"
       >

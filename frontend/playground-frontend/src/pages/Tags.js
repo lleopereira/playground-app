@@ -92,7 +92,7 @@ export default function Tags() {
       >
         {/* Description Text */}
         <p className="tags-description">
-          Adicione tags para organizar suas ideias
+          Adicione as suas Tags abaixo
         </p>
 
         {/* Tags Container - Shows existing tags */}
@@ -142,7 +142,7 @@ export default function Tags() {
 
         {/* Helper Text */}
         <small className="input-helper">
-          Digite uma tag e pressione Enter para adicionar
+          *Digite uma tag e pressione Enter para adicionar
         </small>
 
         {/* Submit Button */}
