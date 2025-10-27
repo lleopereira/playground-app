@@ -1,0 +1,436 @@
+/* CEP Page Specific: Ultra-high specificity override for Layout main-content */
+html body div.layout-container main.main-content[data-page="cep"] {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  min-height: auto !important; /* Remove min-height that causes centering */
+  display: block !important; /* Override any flex properties */
+  align-items: unset !important;
+  justify-content: unset !important;
+}
+
+/* Override the layout-container flexbox behavior for CEP */
+html body div.layout-container:has(main[data-page="cep"]) {
+  align-items: flex-start !important; /* Align content to top */
+}
+
+/* Fallback for browsers without :has() support */
+html body div.layout-container[data-cep-page="true"] {
+  align-items: flex-start !important;
+}
+
+/* Additional high-specificity overrides for all device ranges */
+html body div#main-layout main#main-content[data-page="cep"] {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  min-height: auto !important;
+  display: block !important;
+}
+
+/* Ultra-specific media query overrides matching Layout.css exactly */
+@media (min-width: 769px) and (max-width: 1024px) {
+  html body div.layout-container main.main-content[data-page="cep"] {
+    padding-top: 0 !important;
+    margin-left: var(--sidebar-width-tablet);
+    width: auto;
+    max-width: none;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  html body div.layout-container main.main-content[data-page="cep"] {
+    padding-top: 0 !important;
+    margin-left: var(--sidebar-width-tablet);
+    width: auto;
+    max-width: none;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  html body div.layout-container main.main-content[data-page="cep"] {
+    padding-top: 0 !important;
+    margin-left: 0;
+    width: 100%;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    box-sizing: border-box;
+  }
+}
+
+/* CEP Page Specific: Override Layout main-content ONLY when this CSS loads */
+body:has(#cep-page) .main-content,
+.main-content:has(#cep-page) {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* If :has() not supported, use attribute-based targeting */
+.main-content[data-page="cep"] {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* CEP specific page content adjustments - FIX THE FLEXBOX CENTERING! */
+#cep-page.page-content {
+  padding-top: 4.5rem; /* 📍 ADJUSTABLE HEIGHT: Change this value to move content up/down */
+  margin-top: 0;
+  /* Override the flexbox centering that's causing middle positioning */
+  justify-content: flex-start !important; /* Keep content at top vertically */
+  align-items: center !important; /* Center content horizontally */
+  min-height: 100vh !important; /* Ensure enough height */
+  height: auto !important; /* Remove fixed height */
+  overflow: visible !important; /* Ensure content can be seen */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #cep-page.page-content {
+    padding: 3rem 1rem 0.5rem 1rem; /* 📍 TABLET HEIGHT: Adjust first value (3rem) to change tablet positioning */
+  }
+  
+  /* Ultra-high specificity override for tablet resolutions */
+  html body div.layout-container main.main-content[data-page="cep"] #cep-page.page-content {
+    padding-top: 4rem !important; /* 📍 TABLET OVERRIDE: Adjust to change tablet top padding */
+  }
+}
+
+@media (max-width: 481px) {
+  #cep-page.page-content {
+    padding: 4rem 0.75rem 0.5rem 0.75rem !important; /* 📍 MOBILE HEIGHT: Adjust first value (4rem) for mobile positioning */
+  }
+  
+  /* Ultra-high specificity override for mobile */
+  html body div.layout-container main.main-content[data-page="cep"] #cep-page.page-content {
+    padding-top: 4rem !important; /* 📍 MOBILE OVERRIDE: Adjust to change mobile top padding */
+  }
+}
+
+/* Base Styles - Following existing pattern from other pages */
+.page-content {
+  padding: clamp(1rem, 4vw, 2rem);
+  max-width: 1536px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+#page-title {
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin-top: 2rem;
+}
+
+/* Form Container Styles */
+.cep-form {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: rgb(241, 239, 239);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+/* Form Subtitle */
+.form-subtitle {
+  font-style: italic;
+  color: #333;
+  margin: 0 0 1rem 0;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Input Group Styles */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-label {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+/* CEP Input Container - Special layout for CEP input + search button */
+.cep-input-container {
+  display: flex;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+/* Input Field Styles */
+input[type="text"] {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  background: white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus {
+  border-color: var(--primary-color, #2c3e50);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1);
+}
+
+/* Error state for inputs */
+input[type="text"].error {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.1);
+}
+
+/* Read-only input styling */
+.readonly-input {
+  background-color: #f8f9fa !important;
+  cursor: not-allowed;
+  color: #6c757d;
+}
+
+.readonly-input:focus {
+  border-color: #ddd !important;
+  box-shadow: none !important;
+}
+
+/* Search Button */
+.search-button {
+  background-color: #296529;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+  min-width: 100px;
+}
+
+.search-button:hover:not(:disabled) {
+  background-color: #1c491c;
+}
+
+.search-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Error Message */
+.error-message {
+  color: #e74c3c;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Input Row - For side-by-side inputs (City and State) */
+.input-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.input-row .input-group {
+  flex: 1;
+}
+
+.half-width {
+  flex: 1;
+}
+
+/* Submit Button - Following existing pattern */
+button[type="submit"],
+.submit-button {
+  background-color: #296529;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 0.75rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button[type="submit"]:hover,
+.submit-button:hover {
+  background-color: #1c491c;
+}
+
+/* Responsive Design - Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .cep-form {
+    padding: 1.5rem;
+  }
+  
+  .cep-input-container {
+    gap: 0.5rem;
+  }
+  
+  .search-button {
+    padding: 0.75rem 1.25rem;
+    min-width: 90px;
+  }
+}
+
+/* Responsive Design - Small Tablet */
+@media (max-width: 768px) {
+  /* Note: Top positioning is handled by specific #cep-page rules above */
+
+  .cep-form {
+    padding: 1rem;
+  }
+
+  .input-row {
+    gap: 0.75rem;
+  }
+
+  .cep-input-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .search-button {
+    width: 100%;
+    min-width: unset;
+  }
+
+  button[type="submit"],
+  .submit-button {
+    width: 30%;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    align-self: center;
+  }
+}
+
+/* Responsive Design - Mobile */
+@media (max-width: 481px) {
+  /* Note: Top positioning is handled by specific #cep-page rules above */
+
+  .cep-form {
+    padding: 0.75rem;
+  }
+
+  .form-subtitle {
+    font-size: 1rem;
+  }
+
+  .input-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .half-width {
+    flex: none;
+  }
+
+  .cep-input-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .search-button {
+    width: 100%;
+    padding: 0.75rem;
+  }
+
+  input[type="text"] {
+    font-size: 0.9rem;
+    padding: 0.65rem;
+  }
+
+  .submit-button,
+  button[type="submit"] {
+    width: 30%;
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.85rem !important;
+    margin-top: 0.4rem !important;
+    height: auto;
+    min-height: 2.2rem;
+    align-self: center;
+  }
+}
+
+/* Focus States for Accessibility */
+.search-button:focus,
+input[type="text"]:focus {
+  outline: 2px solid var(--primary-color, #2c3e50);
+  outline-offset: 2px;
+}
+
+/* Loading state animation for search button */
+.search-button:disabled {
+  position: relative;
+}
+
+/* Animation for form appearance */
+.cep-form {
+  animation: formFadeIn 0.3s ease-out;
+}
+
+@keyframes formFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Address fields fade-in animation */
+.input-group {
+  animation: fieldFadeIn 0.4s ease-out;
+}
+
+@keyframes fieldFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .cep-form {
+    border: 2px solid;
+  }
+  
+  input[type="text"] {
+    border: 2px solid;
+  }
+  
+  .search-button,
+  .submit-button {
+    border: 2px solid;
+  }
+}

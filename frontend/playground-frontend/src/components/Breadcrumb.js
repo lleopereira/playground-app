@@ -26,9 +26,19 @@ export default function Breadcrumb({ tabIndex }) {
       case 'selects':
         return 'Selects';
       case 'upload':
-        return 'File Uploads';  
-      case 'ajuda':
-        return 'Ajuda';  
+        return 'File Uploads';
+      case 'upload':
+        return 'File Uploads';
+      case 'upload':
+        return 'File Uploads';
+      case 'tags':
+        return 'Tags';
+      case 'datepicker':
+        return 'Date Picker';
+      case 'tables':
+        return 'Tables';
+      case 'cep':
+        return 'CEP';
       case 'browser-commands':
         return 'Browser Commands';
       case 'cli-commands':

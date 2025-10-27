@@ -17,6 +17,7 @@ import Ajuda from './pages/Ajuda';
 import CliCommands from './pages/CliCommands';
 import Tags from './pages/Tags';
 import DatePicker from './pages/DatePicker';
+import CEP from './pages/CEP';
 
 function App() {
   return (
@@ -113,6 +114,13 @@ function App() {
             <ProtectedRoute>
               <Layout>
                 <UnderConstruction />
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/cep" element={
+            <ProtectedRoute>
+              <Layout>
+                <CEP />
               </Layout>
             </ProtectedRoute>
           } />

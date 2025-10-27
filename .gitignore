@@ -40,6 +40,10 @@ Thumbs.db
 docker-compose.override.yml
 **/tmp/
 
+# Playwright MCP files
+.playwright-mcp/
+**/.playwright-mcp/
+
 # Documentation
 SETUP_GUIDE.md
 UPDATE_INSTRUCTIONS.md

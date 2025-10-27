@@ -59,6 +59,9 @@ export default function Layout({ children }) {
   
   // Check if we're on TextArea page (for special layout handling)
   const isTextAreaPage = location.pathname === '/textarea';
+  
+  // Check if we're on CEP page (for special layout handling)
+  const isCEPPage = location.pathname === '/cep';
 
   return (
     <div 
@@ -69,6 +72,7 @@ export default function Layout({ children }) {
       data-tags-page={isTagsPage ? 'true' : undefined}
       data-inputs-page={isInputsPage ? 'true' : undefined}
       data-textarea-page={isTextAreaPage ? 'true' : undefined}
+      data-cep-page={isCEPPage ? 'true' : undefined}
     >
       {/* Top bar - hidden on playground page */}
       {!isPlaygroundPage && (
@@ -254,6 +258,18 @@ export default function Layout({ children }) {
               Tables
             </Link>
           </li>
+          <li role="menuitem">
+            <Link
+              to="/cep"
+              id="link-cep"
+              data-test-id="nav-cep"
+              className={location.pathname === '/cep' ? 'active' : ''}
+              onClick={closeSidebar}
+              aria-current={location.pathname === '/cep' ? 'page' : undefined}
+            >
+              CEP
+            </Link>
+          </li>
         </ul>
         
         {/* Help Section - Separated at bottom */}
@@ -290,7 +306,7 @@ export default function Layout({ children }) {
         className="main-content"
         id="main-content"
         data-test-id="page-content"
-        data-page={isDatePickerPage ? 'datepicker' : (isTagsPage ? 'tags' : (isInputsPage ? 'inputs' : (isTextAreaPage ? 'textarea' : undefined)))}
+        data-page={isDatePickerPage ? 'datepicker' : (isTagsPage ? 'tags' : (isInputsPage ? 'inputs' : (isTextAreaPage ? 'textarea' : (isCEPPage ? 'cep' : undefined))))}
         role="main"
         aria-live="polite"
       >
