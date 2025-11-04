@@ -318,4 +318,143 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
   }
 }
 
+/* ================================
+   ACCESSIBILITY STYLES
+   ================================ */
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Input error states */
+.input-error {
+  border: 2px solid #dc3545 !important;
+  background-color: #fff5f5 !important;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+}
+
+.input-error:focus {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.5) !important;
+  outline: none !important;
+}
+
+/* Error messages */
+.error-message {
+  color: #dc3545;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  display: block;
+  line-height: 1.4;
+}
+
+/* Input descriptions */
+.input-description {
+  color: #666;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  line-height: 1.4;
+  display: block;
+}
+
+/* Focus improvements for better accessibility */
+input:focus,
+button:focus {
+  outline: 2px solid #007bff !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25) !important;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .input-error {
+    border-width: 3px !important;
+  }
+  
+  .error-message {
+    font-weight: bold !important;
+  }
+  
+  input:focus,
+  button:focus {
+    outline-width: 3px !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Required field indicators */
+.input-label span[aria-hidden="true"] {
+  color: #dc3545;
+  font-weight: bold;
+  margin-left: 0.25rem;
+}
+
+/* Form group role styling */
+[role="group"] {
+  margin-bottom: 1.5rem;
+}
+
+/* Search role styling */
+[role="search"] {
+  position: relative;
+}
+
+/* Disabled state improvements */
+button:disabled,
+button[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #e9ecef !important;
+  border-color: #ced4da !important;
+  color: #6c757d !important;
+}
+
+/* Live region improvements */
+[aria-live] {
+  font-weight: 500;
+}
+
+/* Form validation status */
+#form-status:not(:empty) {
+  padding: 0.5rem;
+  background-color: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  color: #856404;
+}
+
+/* Focus trap improvements for better keyboard navigation */
+.input-form {
+  position: relative;
+}
+
+/* Better focus indicator for mobile */
+@media (max-width: 768px) {
+  input:focus,
+  button:focus {
+    outline-width: 3px !important;
+    outline-offset: 1px !important;
+  }
+}
+
 

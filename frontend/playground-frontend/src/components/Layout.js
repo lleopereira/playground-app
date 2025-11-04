@@ -62,6 +62,9 @@ export default function Layout({ children }) {
   
   // Check if we're on CEP page (for special layout handling)
   const isCEPPage = location.pathname === '/cep';
+  
+  // Check if we're on Tables page (for special layout handling)
+  const isTablesPage = location.pathname === '/tables';
 
   return (
     <div 
@@ -73,6 +76,7 @@ export default function Layout({ children }) {
       data-inputs-page={isInputsPage ? 'true' : undefined}
       data-textarea-page={isTextAreaPage ? 'true' : undefined}
       data-cep-page={isCEPPage ? 'true' : undefined}
+      data-tables-page={isTablesPage ? 'true' : undefined}
     >
       {/* Top bar - hidden on playground page */}
       {!isPlaygroundPage && (
@@ -306,7 +310,7 @@ export default function Layout({ children }) {
         className="main-content"
         id="main-content"
         data-test-id="page-content"
-        data-page={isDatePickerPage ? 'datepicker' : (isTagsPage ? 'tags' : (isInputsPage ? 'inputs' : (isTextAreaPage ? 'textarea' : (isCEPPage ? 'cep' : undefined))))}
+        data-page={isDatePickerPage ? 'datepicker' : (isTagsPage ? 'tags' : (isInputsPage ? 'inputs' : (isTextAreaPage ? 'textarea' : (isCEPPage ? 'cep' : (isTablesPage ? 'tables' : undefined)))))}
         role="main"
         aria-live="polite"
       >

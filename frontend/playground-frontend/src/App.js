@@ -18,6 +18,7 @@ import CliCommands from './pages/CliCommands';
 import Tags from './pages/Tags';
 import DatePicker from './pages/DatePicker';
 import CEP from './pages/CEP';
+import Tables from './pages/Tables';
 
 function App() {
   return (
@@ -113,7 +114,7 @@ function App() {
           <Route path="/tables" element={
             <ProtectedRoute>
               <Layout>
-                <UnderConstruction />
+                <Tables />
               </Layout>
             </ProtectedRoute>
           } />

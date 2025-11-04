@@ -14,10 +14,39 @@ export default function FormSubmitOverlay({ formData, onClose }) {
     // Add class to body to hide hamburger menu
     document.body.classList.add('overlay-open');
 
+    // Announce overlay opening to screen readers
+    const announcement = document.createElement('div');
+    announcement.setAttribute('aria-live', 'assertive');
+    announcement.setAttribute('aria-atomic', 'true');
+    announcement.className = 'sr-only';
+    announcement.textContent = 'Modal de dados enviados foi aberto. Pressione Escape para fechar.';
+    document.body.appendChild(announcement);
+
     // Trap focus within dialog
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         onClose();
+      }
+      
+      // Trap Tab key within dialog
+      if (e.key === 'Tab') {
+        const focusableElements = dialogRef.current.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            lastElement.focus();
+            e.preventDefault();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            firstElement.focus();
+            e.preventDefault();
+          }
+        }
       }
     };
 
@@ -27,6 +56,9 @@ export default function FormSubmitOverlay({ formData, onClose }) {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.body.classList.remove('overlay-open');
+      if (announcement && announcement.parentNode) {
+        announcement.parentNode.removeChild(announcement);
+      }
     };
   }, [onClose]);
 
@@ -40,6 +72,12 @@ export default function FormSubmitOverlay({ formData, onClose }) {
       aria-labelledby="overlay-title"
       aria-describedby="submitted-data"
       ref={dialogRef}
+      onClick={(e) => {
+        // Close on backdrop click
+        if (e.target === e.currentTarget) {
+          onClose();
+        }
+      }}
     >
       <div 
         className="overlay-content" 
@@ -60,7 +98,6 @@ export default function FormSubmitOverlay({ formData, onClose }) {
           data-test-id="submitted-data-list"
           id="submitted-data"
         >
-          {/* Conditional rendering for different form types */}
           {formData.name !== undefined && (
             <div 
               className="data-item"
@@ -77,6 +114,8 @@ export default function FormSubmitOverlay({ formData, onClose }) {
                 className="value" 
                 data-test-id="submitted-name"
                 id="submitted-name-value"
+                role="definition"
+                aria-label={`Nome enviado: ${formData.name || 'Não informado'}`}
               >
                 {formData.name || '-'}
               </span>
@@ -99,6 +138,8 @@ export default function FormSubmitOverlay({ formData, onClose }) {
                 className="value" 
                 data-test-id="submitted-email"
                 id="submitted-email-value"
+                role="definition"
+                aria-label={`Email enviado: ${formData.email || 'Não informado'}`}
               >
                 {formData.email || '-'}
               </span>
@@ -121,6 +162,8 @@ export default function FormSubmitOverlay({ formData, onClose }) {
                 className="value" 
                 data-test-id="submitted-phone"
                 id="submitted-phone-value"
+                role="definition"
+                aria-label={`Telefone enviado: ${formData.phone || 'Não informado'}`}
               >
                 {formData.phone || '-'}
               </span>
@@ -143,6 +186,8 @@ export default function FormSubmitOverlay({ formData, onClose }) {
                 className="value" 
                 data-test-id="submitted-number"
                 id="submitted-number-value"
+                role="definition"
+                aria-label={`Número enviado: ${formData.number || 'Não informado'}`}
               >
                 {formData.number || '-'}
               </span>
@@ -165,6 +210,8 @@ export default function FormSubmitOverlay({ formData, onClose }) {
                 className="value" 
                 data-test-id="submitted-search"
                 id="submitted-search-value"
+                role="definition"
+                aria-label={`Pesquisa enviada: ${formData.search || 'Não informado'}`}
               >
                 {formData.search || '-'}
               </span>
@@ -187,6 +234,8 @@ export default function FormSubmitOverlay({ formData, onClose }) {
                 className="value" 
                 data-test-id="submitted-date"
                 id="submitted-date-value"
+                role="definition"
+                aria-label={`Data enviada: ${formData.date || 'Não informado'}`}
               >
                 {formData.date || '-'}
               </span>
@@ -210,6 +259,8 @@ export default function FormSubmitOverlay({ formData, onClose }) {
                 className="value textarea-value" 
                 data-test-id="submitted-basic-textarea"
                 id="submitted-basic-textarea-value"
+                role="definition"
+                aria-label={`Texto básico enviado: ${formData.basicTextarea || 'Não informado'}`}
               >
                 {formData.basicTextarea || '-'}
               </span>
